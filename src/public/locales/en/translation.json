@@ -1,0 +1,297 @@
+{
+  "navigation": {
+    "link1": "Search",
+    "link2": {
+      "title": "Top",
+      "button1": "Movies",
+      "button2": "TV Shows"
+    },
+    "link3": {
+      "title": "Discover",
+      "button1": "Movies",
+      "button2": "TV Shows"
+    },
+    "link4": "Watchlist",
+    "link5": "Profile"
+  },
+
+  "validator": {
+    "username": {
+      "min": "5 characters minimum",
+      "max": "30 characters maximum"
+    },
+    "email": {
+      "required": "A valid Email is required",
+      "min": "8 characters minimum",
+      "max": "255 characters maximum"
+    },
+    "password": {
+      "min": "8 characters minimum",
+      "max": "30 characters maximum"
+    },
+    "confirmPassword": "Passwords must match",
+    "search": {
+      "min": "1 character minimum",
+      "max": "100 characters maximum",
+      "special": "No special characters allowed"
+    },
+    "media": {
+      "required": "A watchlist must be selected"
+    },
+    "watchlist": {
+      "title": {
+        "min": "3 characters minimum",
+        "max": "50 characters maximum"
+      }
+    },
+    "profile": {
+      "delete": "Must matches \"your_email@mail.com/bye-scenario\""
+    }
+  },
+
+  "action": {
+    "isViewed": "Watched"
+  },
+
+  "auth": {
+    "form": {
+      "title": {
+        "login": "Welcome back.",
+        "register": "Join us !",
+        "forgot": {
+          "title": "Forgot something ?",
+          "subtitle": "Enter your email and we'll send you a link to reset your password."
+        },
+        "reset": "Write it somewhere safe this time."
+      },
+      "label": {
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password"
+      },
+      "submit": {
+        "forgot": "Send",
+        "login": "Login",
+        "logout": "Logout",
+        "register": "Register",
+        "reset": "Reset"
+      },
+      "switch": {
+        "login": {
+          "number1": "You don't have an account ?",
+          "number2": "Register here",
+          "number3": "Forgot your password ?"
+        },
+        "register": {
+          "number1": "You already have an account ?",
+          "number2": "Login here"
+        },
+        "forgot": {
+          "number1": "You remember it ?",
+          "number2": "Login here"
+        }
+      }
+    }
+  },
+
+  "button": {
+    "watchlist": {
+      "create": "Create a Watchlist"
+    },
+    "profile": {
+      "settings": "Settings",
+      "update": "Update",
+      "delete": "Click here to delete your account"
+    }
+  },
+
+  "dropdown": {
+    "banner": {
+      "modify": "Modify your banner",
+      "delete": "Delete your banner"
+    },
+    "media": "Add to a watchlist",
+    "view": "Mark as \"watched\"",
+    "unview": "Unmark as \"watched\"",
+    "watchlist": {
+      "modify": "Modify watchlist",
+      "rename": "Rename watchlist",
+      "delete": "Delete watchlist"
+    }
+  },
+
+  "error": {
+    "noBiography": "No biography yet.",
+    "noContent": "No content yet.",
+    "noResult": {
+      "title": "Sorry, no results...",
+      "subtitle": "Try another search."
+    },
+    "noSynopsis": "No synopsis yet.",
+    "noWatchlist": "You haven't made any watchlist yet.",
+    "notFound": {
+      "title": "Error 404",
+      "subtitle": "This page doesn't exist."
+    }
+  },
+
+  "filter": {
+    "title": "Filter by",
+    "every": "All"
+  },
+
+  "modal": {
+    "search": {
+      "title": "Look for movies, TV shows, actors, directors...",
+      "placeholder": "Type here...",
+      "submit": "Search"
+    },
+    "media": {
+      "create": {
+        "title": "Make a choice",
+        "label": "Watchlist",
+        "submit": "Add"
+      },
+      "delete": {
+        "submit": "Delete this content"
+      }
+    },
+    "watchlist": {
+      "label": "Title",
+      "create": {
+        "title": "A new idea ?",
+        "submit": "Add"
+      },
+      "update": {
+        "title": "A change ?",
+        "submit": "Edit"
+      },
+      "delete": {
+        "title": "Are your sure ?",
+        "subtitle": "This action is final.",
+        "submit": "Delete this watchlist",
+        "cancel": "No"
+      }
+    },
+    "profile": {
+      "banner": {
+        "title": "Are you sure ?",
+        "subtitle": "You can always upload another one later.",
+        "submit": "Delete my banner",
+        "cancel": "No"
+      },
+      "delete": {
+        "title": "You leave us ?",
+        "subtitle": "There is no comming back.",
+        "label1": "Type",
+        "label2": "to delete your account",
+        "submit": "Delete"
+      }
+    }
+  },
+
+  "page": {
+    "home": {
+      "title": "Welcome to Scenario."
+    },
+    "detail": {
+      "media": {
+        "cast": "Cast",
+        "seasons": {
+          "title": "Seasons",
+          "season": {
+            "singular": "Season",
+            "plurial": "Seasons"
+          },
+          "episode": {
+            "singular": "Episode",
+            "plurial": "Episodes"
+          }
+        },
+        "screenshots": "Screenshots",
+        "providers": {
+          "title": "Where do I watch it ?",
+          "subtitle1": "Streaming",
+          "subtitle2": "Buy"
+        },
+        "recommandations": "Recommandations"
+      }
+    },
+    "person": {
+      "title": "Been known for"
+    },
+    "watchlist": {
+      "title": "Your watchlist",
+      "subtitle": "Find here every watchlist you've created.",
+      "count": {
+        "singular": "Element",
+        "plurial": "Elements"
+      }
+    },
+    "profile": {
+      "noBanner": {
+        "title": "My profile"
+      },
+      "description": "Find all your viewing statistics here.",
+      "views": {
+        "movieTitle": "Watched Movies List",
+        "tvTitle": "Watched TV Shows List"
+      },
+      "settings": {
+        "title": "Manage your account",
+        "description": "Edit here your banner, pseudo, mail or password.",
+        "note": "Please note that you'll be disconnected to ensure the update.",
+        "delete": {
+          "title": "Delete account",
+          "description": "Once you delete your account, there is no going back. Please be certain."
+        }
+      }
+    }
+  },
+
+  "sort": {
+    "title": "Sort by",
+    "option1": "Popularity",
+    "option2": "Most recent",
+    "option3": "Best rating"
+  },
+
+  "stats": {
+    "movie": "Movie watched",
+    "movies": "Movies watched",
+    "tv": "TV Show watched",
+    "tvs": "TV Shows watched",
+    "durationWeek": "week",
+    "durationWeeks": "weeks",
+    "durationDay": "day",
+    "durationDays": "days",
+    "movieRuntime": "Movie's total runtime",
+    "tvRuntime": "Episode watched",
+    "tvsRuntime": "Episodes watched"
+  },
+
+  "toast": {
+    "login": "Email or password invalid",
+    "register": "Username or Email already taken",
+    "expired": "Session expired",
+    "success": {
+      "forgot": "Email sent",
+      "reset": "Password modified",
+      "media": {
+        "add": "Added to"
+      },
+      "profile": {
+        "update": "Account updated",
+        "delete": "Account deleted"
+      },
+      "watchlist": {
+        "delete": "Watchlist deleted"
+      }
+    },
+    "error": "Oops, something went wrong",
+    "errorTMDB": "Oops, something went wrong with TMDB",
+    "errorFirebase": "Oops, error from Firebase",
+    "errorSize": "File too heavy, must be lighter than 1Mb"
+  }
+}

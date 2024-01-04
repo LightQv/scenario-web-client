@@ -1,0 +1,297 @@
+{
+  "navigation": {
+    "link1": "Rechercher",
+    "link2": {
+      "title": "Top",
+      "button1": "Films",
+      "button2": "Séries TV"
+    },
+    "link3": {
+      "title": "Découvrir",
+      "button1": "Films",
+      "button2": "Séries TV"
+    },
+    "link4": "Liste de lecture",
+    "link5": "Profil"
+  },
+
+  "validator": {
+    "username": {
+      "min": "Minimum 5 caractères",
+      "max": "Maximum 30 caractères"
+    },
+    "email": {
+      "required": "Un email valide est requis",
+      "min": "Minimum 8 caractères",
+      "max": "Maximum 255 caractères"
+    },
+    "password": {
+      "min": "Minimum 8 caractères",
+      "max": "Maximum 30 caractères"
+    },
+    "confirmPassword": "Les mots de passes doivent être identiques",
+    "search": {
+      "min": "Minimum 1 caractère",
+      "max": "Maximum 100 caractères",
+      "special": "Aucun caractère spécial autorisé"
+    },
+    "media": {
+      "required": "Une liste de lecture doit être sélectionnée"
+    },
+    "watchlist": {
+      "title": {
+        "min": "Minimum 3 caractères",
+        "max": "Maximum 50 caractères"
+      }
+    },
+    "profile": {
+      "delete": "Doit correspondre à \"votre_email@mail.com/bye-scenario\"."
+    }
+  },
+
+  "action": {
+    "isViewed": "Vu"
+  },
+
+  "auth": {
+    "form": {
+      "title": {
+        "login": "Bon retour.",
+        "register": "Rejoignez-nous !",
+        "forgot": {
+          "title": "Vous avez oublié quelque chose ?",
+          "subtitle": "Entrez votre email afin de recevoir un lien pour réinitialiser votre mot de passe."
+        },
+        "reset": "Notez le quelque part."
+      },
+      "label": {
+        "username": "Pseudo",
+        "email": "Email",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmation mot de passe"
+      },
+      "submit": {
+        "forgot": "Envoyer",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "register": "S'enregistrer",
+        "reset": "Réinitialiser"
+      },
+      "switch": {
+        "login": {
+          "number1": "Vous n'avez pas de compte ?",
+          "number2": "Enregistrez-vous ici",
+          "number3": "Mot de passe oublié ?"
+        },
+        "register": {
+          "number1": "Vous avez déjà un compte ?",
+          "number2": "Connectez-vous ici"
+        },
+        "forgot": {
+          "number1": "Vous vous en souvenez ?",
+          "number2": "Connectez-vous ici"
+        }
+      }
+    }
+  },
+
+  "button": {
+    "watchlist": {
+      "create": "Créer une Liste de lecture"
+    },
+    "profile": {
+      "settings": "Paramètres",
+      "update": "Mettre à jour",
+      "delete": "Cliquer ici pour supprimer votre compte"
+    }
+  },
+
+  "dropdown": {
+    "banner": {
+      "modify": "Modifier votre bannière",
+      "delete": "Supprimer votre bannière"
+    },
+    "media": "Ajouter à une liste de lecture",
+    "view": "Marquer comme \"vu\"",
+    "unview": "Retirer des \"vus\"",
+    "watchlist": {
+      "modify": "Modifier la liste de lecture",
+      "rename": "Renommer la liste de lecture",
+      "delete": "Supprimer la liste de lecture"
+    }
+  },
+
+  "error": {
+    "noBiography": "Aucune biographie pour l'instant.",
+    "noContent": "Aucun contenu pour l'instant.",
+    "noResult": {
+      "title": "Désolé, aucun résultat...",
+      "subtitle": "Essayez une autre recherche."
+    },
+    "noSynopsis": "Aucun synopsis.",
+    "noWatchlist": "Vous n'avez pas encore créé de liste de lecture.",
+    "notFound": {
+      "title": "Error 404",
+      "subtitle": "Cette page n'existe pas."
+    }
+  },
+
+  "filter": {
+    "title": "Filtrer par",
+    "every": "Tous"
+  },
+
+  "modal": {
+    "search": {
+      "title": "Rechercher un film, séries TV, acteur, réalisateur...",
+      "placeholder": "Écrire ici...",
+      "submit": "Rechercher"
+    },
+    "media": {
+      "create": {
+        "title": "Faites votre choix",
+        "label": "Liste de lecture",
+        "submit": "Ajouter"
+      },
+      "delete": {
+        "submit": "Supprimer ce contenu"
+      }
+    },
+    "watchlist": {
+      "label": "Titre",
+      "create": {
+        "title": "Une nouvelle idée ?",
+        "submit": "Ajouter"
+      },
+      "update": {
+        "title": "Un changement ?",
+        "submit": "Modifier"
+      },
+      "delete": {
+        "title": "Êtes-vous sur ?",
+        "subtitle": "Cette action est définitive.",
+        "submit": "Supprimer cette liste de lecture",
+        "cancel": "Non"
+      }
+    },
+    "profile": {
+      "banner": {
+        "title": "Êtes-vous sur ?",
+        "subtitle": "Vous pouvez toujours en uploader une autre plus tard.",
+        "submit": "Supprimer ma bannière",
+        "cancel": "Non"
+      },
+      "delete": {
+        "title": "Vous nous quittez ?",
+        "subtitle": "Cette action est définitive.",
+        "label1": "Écrivez",
+        "label2": "pour supprimer votre compte",
+        "submit": "Supprimer"
+      }
+    }
+  },
+
+  "page": {
+    "home": {
+      "title": "Bienvenu à Scenario."
+    },
+    "detail": {
+      "media": {
+        "cast": "Casting",
+        "seasons": {
+          "title": "Saisons",
+          "season": {
+            "singular": "Saison",
+            "plurial": "Saisons"
+          },
+          "episode": {
+            "singular": "Épisode",
+            "plurial": "Épisodes"
+          }
+        },
+        "screenshots": "Captures d'écran",
+        "providers": {
+          "title": "Où est-ce que je peux le regarder ?",
+          "subtitle1": "Streaming",
+          "subtitle2": "Acheter"
+        },
+        "recommandations": "Recommandations"
+      }
+    },
+    "person": {
+      "title": "Connu pour"
+    },
+    "watchlist": {
+      "title": "Liste de lecture",
+      "subtitle": "Retrouvez ici toutes les listes de lecture que vous avez créé(e).",
+      "count": {
+        "singular": "Élément",
+        "plurial": "Éléments"
+      }
+    },
+    "profile": {
+      "noBanner": {
+        "title": "Mon profil"
+      },
+      "description": "Retrouvez ici toutes vos statistiques de visionnage.",
+      "views": {
+        "movieTitle": "Liste des Films vus",
+        "tvTitle": "Liste des Séries TV vues"
+      },
+      "settings": {
+        "title": "Modifier votre compte",
+        "description": "Changez ici votre bannière, pseudo, email ou mot de passe.",
+        "note": "Notez que vous serez déconnecté pour valider les changements.",
+        "delete": {
+          "title": "Suppression compte",
+          "description": "Une fois que vous avez supprimé votre compte, il n'y a pas de retour en arrière. Soyez sûr de vous."
+        }
+      }
+    }
+  },
+
+  "sort": {
+    "title": "Trier par",
+    "option1": "Popularité",
+    "option2": "Plus récent",
+    "option3": "Meilleur note"
+  },
+
+  "stats": {
+    "movie": "Film vu",
+    "movies": "Films vus",
+    "tv": "Série TV vue",
+    "tvs": "Séries TV vues",
+    "durationWeek": "semaine",
+    "durationWeeks": "semaines",
+    "durationDay": "jour",
+    "durationDays": "jours",
+    "movieRuntime": "de Films cumulés",
+    "tvRuntime": "Épisode vu",
+    "tvsRuntime": "Épisodes vus"
+  },
+
+  "toast": {
+    "login": "Email ou mot de passe invalide",
+    "register": "Pseudo ou Email déjà prit",
+    "expired": "Session expirée",
+    "success": {
+      "forgot": "Email envoyé",
+      "reset": "Mot de passe modifié",
+      "media": {
+        "add": "Ajouté à"
+      },
+      "profile": {
+        "update": "Compte mis à jour",
+        "delete": "Compte supprimé"
+      },
+      "watchlist": {
+        "delete": "Liste de lecture supprimée"
+      }
+    },
+    "error": "Oops, quelque chose a échoué",
+    "errorTMDB": "Oops, quelque chose a échoué avec TMDB",
+    "errorFirebase": "Oops, erreur de Firebase",
+    "errorSize": "Fichier trop lourd, il doit être plus léger que 1Mb"
+  }
+}

@@ -58,7 +58,7 @@ export default function ContentBanner({
       {trailerObj && trailerObj.length > 0 && (
         <div className="absolute -bottom-5 right-[4.5rem] flex items-center justify-center lg:-bottom-6 lg:right-[5.5rem]">
           <a
-            className="m-auto flex h-10 w-10 items-center justify-center rounded-full bg-theme-light-bg-third font-abri text-base shadow-sm transition-all hover:bg-theme-light-bg-quad lg:h-12 lg:w-12 lg:text-xl dark:bg-theme-dark-bg-third dark:text-theme-dark-text-primary dark:hover:bg-theme-dark-bg-quad"
+            className="m-auto flex h-10 w-10 items-center justify-center rounded-full bg-theme-light-bg-third font-abri text-base shadow-sm transition-all hover:bg-theme-light-bg-quad active:bg-theme-light-bg-quad lg:h-12 lg:w-12 lg:text-xl dark:bg-theme-dark-bg-third dark:text-theme-dark-text-primary dark:hover:bg-theme-dark-bg-quad dark:active:bg-theme-dark-bg-quad"
             href={`https://www.youtube.com/watch?v=${trailerObj[0].key}`}
             target="_blank"
             rel="noreferrer"

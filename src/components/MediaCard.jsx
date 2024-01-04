@@ -53,8 +53,12 @@ export default function MediaCard({
                 )}`}
               {data.type === "tv" &&
                 (data.runtime > 1
-                  ? `${data.runtime} ${t("detail.seasons.episode.plurial")}`
-                  : `${data.runtime} ${t("detail.seasons.episode.singular")}`)}
+                  ? `${data.runtime} ${t(
+                      "page.detail.media.seasons.episode.plurial"
+                    )}`
+                  : `${data.runtime} ${t(
+                      "page.detail.media.seasons.episode.singular"
+                    )}`)}
             </h2>
           </section>
         </div>

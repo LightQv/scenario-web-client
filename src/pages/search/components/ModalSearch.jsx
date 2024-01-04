@@ -62,7 +62,7 @@ export default function ModalSearch({ setShowSearch, setShowBurger }) {
           name="query"
           id="query"
           placeholder={t("modal.search.placeholder")}
-          className="w-full rounded-lg p-4 text-sm font-semibold text-theme-light-text-primary placeholder:font-normal placeholder:italic focus:outline focus:outline-[2.5px] focus:outline-theme-light-secondary dark:bg-theme-dark-bg-secondary dark:text-theme-dark-text-primary dark:focus:outline-theme-dark-secondary"
+          className="w-full rounded-lg p-4 text-sm font-semibold text-theme-light-text-primary placeholder:font-normal placeholder:italic focus:outline focus:outline-[2.5px] focus:outline-theme-light-main dark:bg-theme-dark-bg-secondary dark:text-theme-dark-text-primary dark:focus:outline-theme-dark-main"
           value={formik.values.query}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

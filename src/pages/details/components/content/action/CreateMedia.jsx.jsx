@@ -106,11 +106,13 @@ export default function CreateMedia({
           >
             <option value="">-------</option>
             {watchlists &&
-              watchlists.map((el) => (
-                <option key={el.id} value={el.id}>
-                  {el.title}
-                </option>
-              ))}
+              watchlists
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((el) => (
+                  <option key={el.id} value={el.id}>
+                    {el.title}
+                  </option>
+                ))}
           </select>
           {formik.errors.watchlistId && (
             <p className="text-xs text-toast-light-error dark:text-toast-dark-error">

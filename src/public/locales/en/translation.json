@@ -106,6 +106,20 @@
     }
   },
 
+  "chart": {
+    "percentage": {
+      "title": "View percentage by media type",
+      "label": "Media type",
+      "movie": "Movies",
+      "tv": "Tv Shows"
+    },
+    "decade": {
+      "title": "View count by decade and by type",
+      "movie": "Movies",
+      "tv": "Tv Shows"
+    }
+  },
+
   "dropdown": {
     "banner": {
       "modify": "Modify your banner",
@@ -238,6 +252,7 @@
         "movieTitle": "Watched Movies List",
         "tvTitle": "Watched TV Shows List"
       },
+      "stat": "Statistics",
       "settings": {
         "title": "Manage your account",
         "description": "Edit here your banner, pseudo, mail or password.",

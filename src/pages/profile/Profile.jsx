@@ -7,6 +7,7 @@ import { notifyError } from "../../components/toasts/Toast";
 import ProfileBanner from "./components/ProfileBanner";
 import ProfileHeader from "./components/ProfileHeader";
 import ProfileViewList from "./components/ProfileViewList";
+import ProfileStat from "./components/ProfileStat";
 import Loader from "../../components/Loader";
 import ScrollTopBtn from "../../components/ScrollTopBtn";
 
@@ -42,7 +43,7 @@ export default function Profile() {
           <Loader />
         </div>
       )}
-      {!loading && banner && (
+      {!loading && banner && user && (
         <div className="w-full lg:mx-auto lg:w-[55%] lg:pt-8">
           <ProfileBanner src={banner.profileBanner} />
           <ProfileHeader
@@ -60,6 +61,7 @@ export default function Profile() {
             title={t("page.profile.views.tvTitle")}
             data={tvViews}
           />
+          {(movieViews || tvViews) && <ProfileStat />}
         </div>
       )}
       <ScrollTopBtn />

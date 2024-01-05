@@ -29,18 +29,27 @@ export function UserViews({ children }) {
       tvViews,
       tvCount,
       tvRuntime,
+      sendView,
       setSendView,
     };
-  }, [movieViews, movieCount, movieRuntime, tvViews, tvCount, tvRuntime]);
+  }, [
+    movieViews,
+    movieCount,
+    movieRuntime,
+    tvViews,
+    tvCount,
+    tvRuntime,
+    sendView,
+  ]);
 
   useEffect(() => {
     if (user.id) {
       instanceAPI
         .get(`/api/v1/user/view/movie/${user.id}`)
         .then(({ data }) => {
-          setMovieViews(data);
-          setMovieCount(data.length);
-          setMovieRuntime(getTotalRuntime(data));
+          setMovieViews(data.view);
+          setMovieCount(data.count[0]._count);
+          setMovieRuntime(getTotalRuntime(data.view));
           setSendView(false);
         })
         .catch(() => notifyError(t("toast.error")));
@@ -49,9 +58,9 @@ export function UserViews({ children }) {
       instanceAPI
         .get(`/api/v1/user/view/tv/${user.id}`)
         .then(({ data }) => {
-          setTvViews(data);
-          setTvCount(data.length);
-          setTvRuntime(getTotalRuntime(data));
+          setTvViews(data.view);
+          setTvCount(data.count[0]._count);
+          setTvRuntime(getTotalRuntime(data.view));
           setSendView(false);
         })
         .catch(() => notifyError(t("toast.error")));

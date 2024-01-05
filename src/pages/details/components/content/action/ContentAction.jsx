@@ -35,6 +35,7 @@ export default function ContentAction({
           dataId: Number(id),
           poster_path: poster,
           release_date: release,
+          release_year: release.slice(0, 4),
           runtime: runtime | episodesNumber,
           title: title,
           type: type,

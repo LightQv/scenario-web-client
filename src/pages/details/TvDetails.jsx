@@ -20,7 +20,7 @@ export default function TvDetails({ data, setShowWatchlist }) {
         setShowWatchlist={setShowWatchlist}
         //--- Props for View Action ----//
         poster={data.poster_path}
-        release={data.release_date}
+        release={data.first_air_date}
         episodesNumber={data.number_of_episodes}
         title={data.name}
       />

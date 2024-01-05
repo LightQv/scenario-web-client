@@ -106,6 +106,20 @@
     }
   },
 
+  "chart": {
+    "percentage": {
+      "title": "Pourcentage de vue par type de média",
+      "label": "Type de média",
+      "movie": "Films",
+      "tv": "Séries TV"
+    },
+    "decade": {
+      "title": "Nombre de vue par décennie et par type de média",
+      "movie": "Films",
+      "tv": "Séries TV"
+    }
+  },
+
   "dropdown": {
     "banner": {
       "modify": "Modifier votre bannière",
@@ -238,6 +252,7 @@
         "movieTitle": "Liste des Films vus",
         "tvTitle": "Liste des Séries TV vues"
       },
+      "stat": "Statistiques",
       "settings": {
         "title": "Modifier votre compte",
         "description": "Changez ici votre bannière, pseudo, email ou mot de passe.",

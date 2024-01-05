@@ -65,7 +65,7 @@ export default function CreateMedia({
         if (isCreated) {
           setShowModal(false);
           notifySuccess(
-            t("toast.success.media.add") + ` ${watchlistSelected.title}`
+            t("toast.success.media.add") + ` "${watchlistSelected.title}"`
           );
         }
       } catch (err) {

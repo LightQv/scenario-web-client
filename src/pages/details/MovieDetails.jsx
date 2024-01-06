@@ -19,6 +19,7 @@ export default function MovieDetails({ data, setShowWatchlist }) {
         //--- Props for Watchlist Action ----//
         setShowWatchlist={setShowWatchlist}
         //--- Props for View Action ----//
+        genres={data.genres}
         poster={data.poster_path}
         release={data.release_date}
         runtime={data.runtime}
@@ -26,6 +27,7 @@ export default function MovieDetails({ data, setShowWatchlist }) {
       />
       <ContentHeader
         title={data.title}
+        original_title={data.original_title}
         genres={data.genres}
         release={data.release_date}
         runtime={data.runtime}

@@ -8,16 +8,18 @@ const GenresContext = createContext({});
 export default GenresContext;
 
 export function MovieGenres({ children }) {
-  const [movieGenres, setMovieGenres] = useState(null);
-  const [tvGenres, setTvGenres] = useState(null);
+  const [movieGenres, setMovieGenres] = useState([]);
+  const [tvGenres, setTvGenres] = useState([]);
+  const [totalGenres, setTotalGenres] = useState([]);
   const { i18n } = useTranslation();
 
   const genresObj = useMemo(() => {
     return {
       movieGenres,
       tvGenres,
+      totalGenres,
     };
-  }, [movieGenres, tvGenres]);
+  }, [movieGenres, tvGenres, totalGenres]);
 
   useEffect(() => {
     instanceTmdb
@@ -34,6 +36,16 @@ export function MovieGenres({ children }) {
       })
       .catch((err) => console.error(err));
   }, [i18n.language]);
+
+  useEffect(() => {
+    const fullGenreArr = movieGenres
+      .concat(tvGenres)
+      .sort((a, b) => a.name.localeCompare(b.name));
+    const removeDuplicate = fullGenreArr.filter((el, index) => {
+      return index === fullGenreArr.findIndex((obj) => el.id === obj.id);
+    });
+    setTotalGenres(removeDuplicate);
+  }, [movieGenres, tvGenres]);
 
   return (
     <GenresContext.Provider value={genresObj}>

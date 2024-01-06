@@ -9,6 +9,7 @@ import { useView } from "../../../../hooks/useView";
 
 export default function ContentHeader({
   title,
+  original_title,
   genres,
   release,
   runtime,
@@ -26,7 +27,12 @@ export default function ContentHeader({
 
   return (
     <section className="mx-5 flex flex-col gap-2 border-b-[1px] border-theme-light-bg-third pt-3 lg:gap-4 lg:pt-6 dark:border-theme-dark-bg-third">
-      <h1 className="w-3/4 font-abri text-2xl lg:text-4xl">{title}</h1>
+      <div>
+        <h1 className="w-3/4 font-abri text-2xl lg:text-4xl">{title}</h1>
+        <h2 className="w-3/4 text-base italic text-theme-light-bg-quad lg:text-lg dark:text-theme-dark-text-secondary">
+          {original_title}
+        </h2>
+      </div>
       <div className="flex flex-wrap gap-2">
         {genres?.slice(0, 3).map((genre) => (
           <Link
@@ -44,12 +50,12 @@ export default function ContentHeader({
         )}
       </div>
       {type === "movie" && (
-        <h2 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
+        <h3 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
           {formatFullDate(release)} • {durationConvert(runtime)}
-        </h2>
+        </h3>
       )}
       {type === "tv" && (
-        <h2 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
+        <h3 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
           {`${status} • ${formatFullDate(start)} ${
             end ? `- ${formatFullDate(end)}` : ""
           } • ${seasonsNumber} ${
@@ -62,7 +68,7 @@ export default function ContentHeader({
           ? t("page.detail.media.seasons.episode.plurial")
           : t("page.detail.media.seasons.episode.singular")
       }`}
-        </h2>
+        </h3>
       )}
       <p className="mb-2 text-justify indent-4 text-xs leading-5 lg:mb-6 lg:text-base dark:text-theme-dark-text-secondary">
         {synopsis ? synopsis : t("error.noSynopsis")}
@@ -73,6 +79,7 @@ export default function ContentHeader({
 
 ContentHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  original_title: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.shape()),
   synopsis: PropTypes.string.isRequired,
   release: PropTypes.string,

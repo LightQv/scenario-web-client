@@ -13,7 +13,7 @@ export default function MediaCard({
   setSelectedMedia,
 }) {
   const location = useLocation();
-  const { viewed } = useView(data.dataId, data.type);
+  const { viewed } = useView(data.tmdb_id, data.media_type);
   const { t } = useTranslation();
 
   const handleMediaSelect = () => {
@@ -30,7 +30,7 @@ export default function MediaCard({
     >
       <Link
         aria-disabled={showEdit}
-        to={!showEdit && `/details/${data.type}/${data.dataId}`}
+        to={!showEdit && `/details/${data.media_type}/${data.tmdb_id}`}
         className="relative flex h-fit w-full items-center justify-between"
       >
         <div className="flex h-full items-center justify-start gap-4 pr-2 transition-all lg:w-2/3">
@@ -47,11 +47,11 @@ export default function MediaCard({
               {data.title}
             </h1>
             <h2 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
-              {data.type === "movie" &&
+              {data.media_type === "movie" &&
                 `${formatFullDate(data.release_date)} • ${durationConvert(
                   data.runtime
                 )}`}
-              {data.type === "tv" &&
+              {data.media_type === "tv" &&
                 `${formatFullDate(data.release_date)} • 
                 ${
                   data.runtime > 1

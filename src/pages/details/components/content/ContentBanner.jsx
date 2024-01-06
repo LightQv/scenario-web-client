@@ -13,6 +13,7 @@ export default function ContentBanner({
   score,
   videos,
   setShowWatchlist,
+  genres,
   poster,
   release,
   runtime,
@@ -73,6 +74,7 @@ export default function ContentBanner({
             dropdown={dropdown}
             setDropdown={setDropdown}
             setShowModal={setShowWatchlist}
+            genres={genres}
             poster={poster}
             release={release}
             runtime={runtime}
@@ -93,6 +95,7 @@ ContentBanner.propTypes = {
   score: PropTypes.number.isRequired,
   videos: PropTypes.arrayOf(PropTypes.shape()),
   setShowWatchlist: PropTypes.func,
+  genres: PropTypes.arrayOf(PropTypes.shape()),
   poster: PropTypes.string,
   release: PropTypes.string,
   runtime: PropTypes.number,

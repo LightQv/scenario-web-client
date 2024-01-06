@@ -41,6 +41,7 @@ export default function CreateMedia({
           }
         });
     }
+    //--- Add 0 to Genre Arr which represent "all" ---//
     const genre = genres.map((el) => el.id);
     genre.unshift(0);
     setGenreIds(genre);

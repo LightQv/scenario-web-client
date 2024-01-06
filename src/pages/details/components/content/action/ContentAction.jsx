@@ -24,6 +24,7 @@ export default function ContentAction({
   const [genreIds, setGenreIds] = useState(genres);
   const { t } = useTranslation();
 
+  //--- Add 0 to Genre Arr which represent "all" ---//
   useEffect(() => {
     const genre = genres.map((el) => el.id);
     genre.unshift(0);

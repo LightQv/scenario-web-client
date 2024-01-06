@@ -98,10 +98,11 @@ export default function WatchlistContent() {
             </p>
           </section>
           {totalGenres && (
-            <div className="my-4 flex w-full flex-col items-center justify-center">
+            <div className="mx-auto my-4 flex w-fit items-center justify-center gap-2 lg:ml-auto lg:mr-5">
+              <h1 className="text-xs">{t("filter.title")}</h1>
               <select
                 onChange={(e) => setFilterGenre(e.target.value)}
-                className="mx-auto w-56 rounded-md border-[1px] border-theme-light-text-primary bg-transparent px-4 py-2 text-sm focus:outline-none dark:border-theme-dark-text-primary dark:bg-theme-dark-bg-primary"
+                className="h-fit w-fit rounded-md border-[1px] border-theme-light-text-primary bg-transparent px-4 py-2 text-xs hover:cursor-pointer hover:border-theme-light-main hover:text-theme-light-main dark:border-theme-dark-text-primary dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
               >
                 <option value={"0"}>{t("filter.every")}</option>
                 {totalGenres.map((genre, index) => (

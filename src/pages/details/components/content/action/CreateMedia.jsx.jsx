@@ -111,7 +111,7 @@ export default function CreateMedia({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            <option value="">-------</option>
+            <option value="">{t("modal.media.create.default")}</option>
             {watchlists &&
               watchlists
                 .sort((a, b) => a.title.localeCompare(b.title))

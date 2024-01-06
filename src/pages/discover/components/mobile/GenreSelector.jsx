@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import GenresContext from "../../../../contexts/GenresContext";
+import Selector from "../../../../components/Selector";
 import PropTypes from "prop-types";
 
 export default function GenreSelector({ scrollTop, showFilter }) {
@@ -37,10 +38,9 @@ export default function GenreSelector({ scrollTop, showFilter }) {
       } items-center gap-2 transition-all`}
     >
       <h1 className="text-xs">{t("filter.title")}</h1>
-      <select
+      <Selector
         defaultValue={searchParams.get("genre") || undefined}
         onChange={changeGenre}
-        className="h-fit w-fit rounded-md border-[1px] border-theme-light-text-primary bg-transparent px-4 py-2 text-xs hover:cursor-pointer hover:border-theme-light-main hover:text-theme-light-main dark:border-theme-dark-text-primary dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
       >
         <option value={"0"}>{t("filter.every")}</option>
         {chooseDataType()?.map((genre, index) => (
@@ -48,7 +48,7 @@ export default function GenreSelector({ scrollTop, showFilter }) {
             {genre.name}
           </option>
         ))}
-      </select>
+      </Selector>
     </section>
   );
 }

@@ -5,8 +5,8 @@ import UserContext from "../../../../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
 import { notifyError } from "../../../../../components/toasts/Toast";
 import { instanceAPI } from "../../../../../services/instances";
-import PropTypes from "prop-types";
 import { useView } from "../../../../../hooks/useView";
+import PropTypes from "prop-types";
 
 export default function ContentAction({
   setShowModal,

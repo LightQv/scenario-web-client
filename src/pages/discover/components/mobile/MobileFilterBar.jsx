@@ -1,5 +1,5 @@
-import SortSelector from "./SortSelector";
 import GenreSelector from "./GenreSelector";
+import SortSelector from "./SortSelector";
 import PlusSvg from "../../../../components/svg/action/PlusSvg";
 import MinusSvg from "../../../../components/svg/action/MinusSvg";
 import PropTypes from "prop-types";

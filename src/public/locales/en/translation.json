@@ -165,6 +165,7 @@
       "create": {
         "title": "Make a choice",
         "label": "Watchlist",
+        "default": "Choose a list",
         "submit": "Add"
       },
       "delete": {

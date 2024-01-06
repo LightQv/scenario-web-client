@@ -10,9 +10,11 @@ import ProfileViewList from "./components/ProfileViewList";
 import ProfileStat from "./components/ProfileStat";
 import Loader from "../../components/Loader";
 import ScrollTopBtn from "../../components/ScrollTopBtn";
+import GenresContext from "../../contexts/GenresContext";
 
 export default function Profile() {
   const { user } = useContext(UserContext);
+  const { movieGenres, tvGenres } = useContext(GenresContext);
   const { movieViews, movieCount, movieRuntime, tvViews, tvCount, tvRuntime } =
     useContext(ViewContext);
   const [banner, setBanner] = useState(null);
@@ -56,10 +58,12 @@ export default function Profile() {
           <ProfileViewList
             title={t("page.profile.views.movieTitle")}
             data={movieViews}
+            genre={movieGenres}
           />
           <ProfileViewList
             title={t("page.profile.views.tvTitle")}
             data={tvViews}
+            genre={tvGenres}
           />
           {(movieViews || tvViews) && <ProfileStat />}
         </div>

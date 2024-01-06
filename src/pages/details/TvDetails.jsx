@@ -19,6 +19,7 @@ export default function TvDetails({ data, setShowWatchlist }) {
         //--- Props for Watchlist Action ----//
         setShowWatchlist={setShowWatchlist}
         //--- Props for View Action ----//
+        genres={data.genres}
         poster={data.poster_path}
         release={data.first_air_date}
         episodesNumber={data.number_of_episodes}
@@ -26,6 +27,7 @@ export default function TvDetails({ data, setShowWatchlist }) {
       />
       <ContentHeader
         title={data.name}
+        original_title={data.original_name}
         genres={data.genres}
         status={data.status}
         start={data.first_air_date}

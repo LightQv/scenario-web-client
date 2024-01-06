@@ -56,8 +56,9 @@ export default function Detail() {
           showModal={showWatchlist}
           setShowModal={setShowWatchlist}
           //--- Props for Watchlist Action ----//
+          genres={data.genres}
           poster={data.poster_path}
-          release={data.release_date}
+          release={data.release_date ? data.release_date : data.first_air_date}
           runtime={data.runtime}
           episodesNumber={data.number_of_episodes}
           title={data.title ? data.title : data.name}

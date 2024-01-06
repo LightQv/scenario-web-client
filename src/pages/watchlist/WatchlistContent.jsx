@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import { useParams } from "react-router-dom";
 import { instanceAPI } from "../../services/instances";
@@ -13,9 +13,11 @@ import ScrollTopBtn from "../../components/ScrollTopBtn";
 import DeleteWatchlist from "./components/action/DeleteWatchlist";
 import CheckSvg from "../../components/svg/action/CheckSvg";
 import DeleteMedia from "./components/action/DeleteMedia";
+import GenresContext from "../../contexts/GenresContext";
 
 export default function WatchlistContent() {
   const { id } = useParams();
+  const { totalGenres } = useContext(GenresContext);
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState(null);
   const [dropdown, setDropdown] = useState(false);
@@ -25,6 +27,8 @@ export default function WatchlistContent() {
   const [showRename, setShowRename] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [filterGenre, setFilterGenre] = useState("0");
+  const [filteredList, setFilteredList] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -44,6 +48,15 @@ export default function WatchlistContent() {
         });
     }
   }, [id, t, updated]);
+
+  //--- Re-render list on filter ---//
+  useEffect(() => {
+    setFilteredList(
+      media?.medias.filter((el) => {
+        return el.genre_ids.includes(Number(filterGenre));
+      })
+    );
+  }, [media, filterGenre]);
 
   return (
     <main className="relative flex min-h-screen justify-between bg-theme-light-bg-primary pt-12 font-fira 2xl:mx-auto 3xl:w-1/2 dark:bg-theme-dark-bg-primary dark:text-theme-dark-text-primary">
@@ -84,9 +97,25 @@ export default function WatchlistContent() {
                 : t("page.watchlist.count.singular")}
             </p>
           </section>
-          {media.medias.length > 0 ? (
+          {totalGenres && (
+            <div className="mx-auto my-4 flex w-fit items-center justify-center gap-2 lg:ml-auto lg:mr-5">
+              <h1 className="text-xs">{t("filter.title")}</h1>
+              <select
+                onChange={(e) => setFilterGenre(e.target.value)}
+                className="h-fit w-fit rounded-md border-[1px] border-theme-light-text-primary bg-transparent px-4 py-2 text-xs hover:cursor-pointer hover:border-theme-light-main hover:text-theme-light-main dark:border-theme-dark-text-primary dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
+              >
+                <option value={"0"}>{t("filter.every")}</option>
+                {totalGenres.map((genre, index) => (
+                  <option key={index} value={genre.id}>
+                    {genre.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          {filteredList?.length > 0 ? (
             <ul className="grid grid-flow-row px-5 pb-2 lg:grid-cols-2 lg:px-0">
-              {media.medias
+              {filteredList
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((el) => (
                   <MediaCard

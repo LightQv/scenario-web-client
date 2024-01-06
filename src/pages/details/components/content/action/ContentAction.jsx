@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ViewContext from "../../../../../contexts/ViewContext";
 import UserContext from "../../../../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
@@ -10,6 +10,7 @@ import { useView } from "../../../../../hooks/useView";
 
 export default function ContentAction({
   setShowModal,
+  genres,
   poster,
   release,
   runtime,
@@ -20,7 +21,15 @@ export default function ContentAction({
   const { user } = useContext(UserContext);
   const { setSendView } = useContext(ViewContext);
   const { viewed, viewObj } = useView(id, type);
+  const [genreIds, setGenreIds] = useState(genres);
   const { t } = useTranslation();
+
+  //--- Add 0 to Genre Arr which represent "all" ---//
+  useEffect(() => {
+    const genre = genres.map((el) => el.id);
+    genre.unshift(0);
+    setGenreIds(genre);
+  }, [genres]);
 
   //--- View Logic ---//
   const handleView = () => {
@@ -32,13 +41,14 @@ export default function ContentAction({
     } else {
       instanceAPI
         .post(`/api/v1/view`, {
-          dataId: Number(id),
+          tmdb_id: Number(id),
+          genre_ids: genreIds,
           poster_path: poster,
           release_date: release,
           release_year: release.slice(0, 4),
           runtime: runtime | episodesNumber,
           title: title,
-          type: type,
+          media_type: type,
           viewerId: user.id,
         })
         .then(() => setSendView(true))
@@ -72,6 +82,7 @@ export default function ContentAction({
 
 ContentAction.propTypes = {
   setShowModal: PropTypes.func,
+  genres: PropTypes.arrayOf(PropTypes.shape()),
   poster: PropTypes.string,
   release: PropTypes.string,
   runtime: PropTypes.number,

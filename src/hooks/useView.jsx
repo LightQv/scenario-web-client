@@ -2,7 +2,7 @@ import { useContext, useLayoutEffect, useState } from "react";
 import ViewContext from "../contexts/ViewContext";
 import UserContext from "../contexts/UserContext";
 
-export function useView(dataId, parameter) {
+export function useView(tmdb_id, parameter) {
   const { user } = useContext(UserContext);
   const { movieViews, tvViews } = useContext(ViewContext);
   const [viewed, setViewed] = useState(false);
@@ -13,10 +13,10 @@ export function useView(dataId, parameter) {
       const isViewed =
         parameter === "movie"
           ? movieViews?.some(
-              (el) => el.dataId === Number(dataId) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
             )
           : tvViews?.some(
-              (el) => el.dataId === Number(dataId) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
             );
       setViewed(isViewed);
     }
@@ -25,16 +25,16 @@ export function useView(dataId, parameter) {
       const viewObj =
         parameter === "movie"
           ? movieViews?.find(
-              (el) => el.dataId === Number(dataId) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
             )
           : tvViews?.find(
-              (el) => el.dataId === Number(dataId) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
             );
       setViewObj(viewObj);
     }
     verifyView();
     getViewObj();
-  }, [dataId, parameter, movieViews, tvViews, user.id]);
+  }, [tmdb_id, parameter, movieViews, tvViews, user.id]);
 
   return { viewed, viewObj };
 }

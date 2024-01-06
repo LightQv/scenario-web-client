@@ -15,6 +15,7 @@ import SubmitBtn from "../../../../../components/SubmitBtn";
 export default function CreateMedia({
   setShowModal,
   elRef,
+  genres,
   poster,
   release,
   runtime,
@@ -25,6 +26,7 @@ export default function CreateMedia({
   const { user } = useContext(UserContext);
   const { t } = useTranslation();
   const [watchlists, setWatchlists] = useState(null);
+  const [genreIds, setGenreIds] = useState(genres);
 
   useEffect(() => {
     if (user.id) {
@@ -39,7 +41,11 @@ export default function CreateMedia({
           }
         });
     }
-  }, [user.id, t]);
+    //--- Add 0 to Genre Arr which represent "all" ---//
+    const genre = genres.map((el) => el.id);
+    genre.unshift(0);
+    setGenreIds(genre);
+  }, [user.id, t, genres]);
 
   const formik = useFormik({
     initialValues: {
@@ -54,12 +60,13 @@ export default function CreateMedia({
       );
       try {
         const isCreated = await instanceAPI.post(`/api/v1/media`, {
-          dataId: Number(id),
+          tmdb_id: Number(id),
+          genre_ids: genreIds,
           poster_path: poster,
           release_date: release,
           runtime: runtime | episodesNumber,
           title: title,
-          type: type,
+          media_type: type,
           watchlistId: values.watchlistId,
         });
         if (isCreated) {
@@ -145,6 +152,7 @@ export default function CreateMedia({
 CreateMedia.propTypes = {
   setShowModal: PropTypes.func,
   elRef: PropTypes.shape(),
+  genres: PropTypes.arrayOf(PropTypes.shape()),
   poster: PropTypes.string,
   release: PropTypes.string,
   runtime: PropTypes.number,

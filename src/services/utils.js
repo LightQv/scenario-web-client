@@ -67,26 +67,26 @@ export function runtimeConvert(time) {
   if (weeks >= 1 && days >= 1) {
     return `${padTo2Digits(weeks)} ${
       padTo2Digits(weeks) > 1
-        ? i18n.t("profile.views.stats.durationWeeks")
-        : i18n.t("profile.views.stats.durationWeek")
+        ? i18n.t("stats.durationWeeks")
+        : i18n.t("stats.durationWeek")
     } ${padTo2Digits(days)} ${
       padTo2Digits(days) > 1
-        ? i18n.t("profile.views.stats.durationDays")
-        : i18n.t("profile.views.stats.durationDay")
+        ? i18n.t("stats.durationDays")
+        : i18n.t("stats.durationDay")
     } ${padTo2Digits(hours) + "h"}${padTo2Digits(minutes)}`;
   }
   if (weeks >= 1) {
     return `${padTo2Digits(weeks)} ${
       padTo2Digits(weeks) > 1
-        ? i18n.t("profile.views.stats.durationWeeks")
-        : i18n.t("profile.views.stats.durationWeek")
+        ? i18n.t("stats.durationWeeks")
+        : i18n.t("stats.durationWeek")
     } ${padTo2Digits(hours) + "h"}${padTo2Digits(minutes)}`;
   }
   if (days >= 1) {
     return `${padTo2Digits(days)} ${
       padTo2Digits(days) > 1
-        ? i18n.t("profile.views.stats.durationDays")
-        : i18n.t("profile.views.stats.durationDay")
+        ? i18n.t("stats.durationDays")
+        : i18n.t("stats.durationDay")
     } ${padTo2Digits(hours) + "h"}${padTo2Digits(minutes)}`;
   }
   if (hours >= 1) {

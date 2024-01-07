@@ -11,7 +11,7 @@ export default function ProfileViewList({ title, data, genre }) {
   const [filter, setFiler] = useState("0");
   const [filteredList, setFilteredList] = useState([]);
   const { t } = useTranslation();
-  console.log(data);
+
   //--- Determine which type of Result and return Genre name based on ID ---//
   useEffect(() => {
     setFilteredList(

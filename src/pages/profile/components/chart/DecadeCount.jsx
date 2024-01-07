@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import ThemeContext from "../../../../contexts/ThemeContext";
-import ViewContext from "../../../../contexts/ViewContext";
 import { useTranslation } from "react-i18next";
 import {
   Chart as ChartJS,
@@ -31,7 +30,6 @@ ChartJS.register(
 export default function DecadeCount() {
   const { darkTheme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-  const { sendView } = useContext(ViewContext);
   const [movieViews, setMovieViews] = useState([]);
   const [tvViews, setTvViews] = useState([]);
   const [minYear, setYearMin] = useState(0);
@@ -58,7 +56,7 @@ export default function DecadeCount() {
         })
         .catch(() => notifyError(t("toast.error")));
     }
-  }, [user, t, sendView]);
+  }, [user, t]);
 
   //--- Get Lowest, Highest year & Max count to scale the chart ---//
   useEffect(() => {

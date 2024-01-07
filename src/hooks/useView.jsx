@@ -10,14 +10,23 @@ export function useView(tmdb_id, parameter) {
 
   useLayoutEffect(() => {
     function verifyView() {
-      const isViewed =
-        parameter === "movie"
-          ? movieViews?.some(
-              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
-            )
-          : tvViews?.some(
-              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
-            );
+      let isViewed = [];
+      if (parameter === "movie") {
+        isViewed = movieViews?.some(
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+        );
+      }
+      if (parameter === "tv") {
+        isViewed = tvViews?.some(
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+        );
+      }
+      if (parameter === null) {
+        let totalViews = movieViews.concat(tvViews);
+        isViewed = totalViews?.some(
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+        );
+      }
       setViewed(isViewed);
     }
 

@@ -47,7 +47,7 @@ export default function Search() {
   };
 
   return (
-    <main className="3xl:w-1/2 flex min-h-screen justify-between bg-theme-light-bg-primary pt-12 font-fira lg:pt-14 2xl:mx-auto 2xl:w-1/2 dark:bg-theme-dark-bg-primary dark:text-theme-dark-text-primary">
+    <main className="flex min-h-screen flex-col justify-between bg-theme-light-bg-primary pt-8 font-fira lg:pt-14 2xl:mx-auto 3xl:w-1/2 dark:bg-theme-dark-bg-primary dark:text-theme-dark-text-primary">
       {loading && (
         <div className="m-auto">
           <Loader />

@@ -15,6 +15,7 @@ export default function ContentBanner({
   setShowWatchlist,
   genres,
   poster,
+  backdrop,
   release,
   runtime,
   episodesNumber,
@@ -76,6 +77,7 @@ export default function ContentBanner({
             setShowModal={setShowWatchlist}
             genres={genres}
             poster={poster}
+            backdrop={backdrop}
             release={release}
             runtime={runtime}
             episodesNumber={episodesNumber}
@@ -97,6 +99,7 @@ ContentBanner.propTypes = {
   setShowWatchlist: PropTypes.func,
   genres: PropTypes.arrayOf(PropTypes.shape()),
   poster: PropTypes.string,
+  backdrop: PropTypes.string,
   release: PropTypes.string,
   runtime: PropTypes.number,
   episodesNumber: PropTypes.number,

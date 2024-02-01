@@ -21,6 +21,7 @@ export default function MovieDetails({ data, setShowWatchlist }) {
         //--- Props for View Action ----//
         genres={data.genres}
         poster={data.poster_path}
+        backdrop={data.backdrop_path}
         release={data.release_date}
         runtime={data.runtime}
         title={data.title}

@@ -17,6 +17,7 @@ export default function CreateMedia({
   elRef,
   genres,
   poster,
+  backdrop,
   release,
   runtime,
   episodesNumber,
@@ -27,7 +28,7 @@ export default function CreateMedia({
   const { t } = useTranslation();
   const [watchlists, setWatchlists] = useState(null);
   const [genreIds, setGenreIds] = useState(genres);
-
+  console.log(backdrop);
   useEffect(() => {
     if (user.id) {
       instanceAPI
@@ -63,6 +64,7 @@ export default function CreateMedia({
           tmdb_id: Number(id),
           genre_ids: genreIds,
           poster_path: poster,
+          backdrop_path: backdrop,
           release_date: release,
           runtime: runtime | episodesNumber,
           title: title,
@@ -154,6 +156,7 @@ CreateMedia.propTypes = {
   elRef: PropTypes.shape(),
   genres: PropTypes.arrayOf(PropTypes.shape()),
   poster: PropTypes.string,
+  backdrop: PropTypes.string,
   release: PropTypes.string,
   runtime: PropTypes.number,
   episodesNumber: PropTypes.number,

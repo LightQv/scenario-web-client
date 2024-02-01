@@ -21,6 +21,7 @@ export default function TvDetails({ data, setShowWatchlist }) {
         //--- Props for View Action ----//
         genres={data.genres}
         poster={data.poster_path}
+        backdrop={data.backdrop_path}
         release={data.first_air_date}
         episodesNumber={data.number_of_episodes}
         title={data.name}

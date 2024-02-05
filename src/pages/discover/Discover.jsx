@@ -24,7 +24,7 @@ export default function Discover() {
     const currentType = searchParams.get("media");
     const currentPage = searchParams.get("page");
     const currentSort = searchParams.get("sort_by") || "popularity.desc";
-    const currentGenre = searchParams.get("genre");
+    const currentGenre = searchParams.get("genre") || "";
     if (currentType && currentPage) {
       setLoading(true);
       instanceTmdb
@@ -32,6 +32,7 @@ export default function Discover() {
           `/discover/${currentType}?language=${i18n.language}&page=${currentPage}&sort_by=${currentSort}&vote_count.gte=500&with_genres=${currentGenre}`
         )
         .then(({ data }) => {
+          console.log(data);
           setResults(data.results);
           setTotalPages(data.total_pages);
           setShowFilter(false);

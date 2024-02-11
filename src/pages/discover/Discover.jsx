@@ -32,7 +32,6 @@ export default function Discover() {
           `/discover/${currentType}?language=${i18n.language}&page=${currentPage}&sort_by=${currentSort}&vote_count.gte=500&with_genres=${currentGenre}`
         )
         .then(({ data }) => {
-          console.log(data);
           setResults(data.results);
           setTotalPages(data.total_pages);
           setShowFilter(false);

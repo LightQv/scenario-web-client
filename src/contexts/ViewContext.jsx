@@ -45,22 +45,22 @@ export function UserViews({ children }) {
   useEffect(() => {
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/movie/${user.id}`)
+        .get(`/api/v1/user/view/movie/${user.id}?genre=`)
         .then(({ data }) => {
-          setMovieViews(data.view);
-          setMovieCount(data.count[0]._count);
-          setMovieRuntime(getTotalRuntime(data.view));
+          setMovieViews(data);
+          setMovieCount(data.length);
+          setMovieRuntime(getTotalRuntime(data));
           setSendView(false);
         })
         .catch(() => notifyError(t("toast.error")));
     }
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/tv/${user.id}`)
+        .get(`/api/v1/user/view/tv/${user.id}?genre=`)
         .then(({ data }) => {
-          setTvViews(data.view);
-          setTvCount(data.count[0]._count);
-          setTvRuntime(getTotalRuntime(data.view));
+          setTvViews(data);
+          setTvCount(data.length);
+          setTvRuntime(getTotalRuntime(data));
           setSendView(false);
         })
         .catch(() => notifyError(t("toast.error")));

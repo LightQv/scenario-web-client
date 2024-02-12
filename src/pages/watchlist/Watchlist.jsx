@@ -38,7 +38,7 @@ export default function Watchlist() {
         </div>
       )}
       {!loading && (
-        <div className="w-full lg:mx-auto lg:w-[55%] lg:pt-8">
+        <div className="w-full lg:mx-auto lg:w-2/3 lg:pt-8">
           <section className="mx-5 flex flex-col gap-2 border-b-[1px] border-theme-light-bg-third pt-3 lg:gap-4 lg:pt-6 dark:border-theme-dark-bg-third">
             <h1 className="w-3/4 font-abri text-2xl lg:text-4xl">
               {t("page.watchlist.title")}
@@ -48,7 +48,7 @@ export default function Watchlist() {
             </p>
           </section>
           {watchlists && (
-            <ul className="grid grid-flow-row px-5 pb-2 lg:grid-cols-2 lg:px-0">
+            <ul className="grid grid-flow-row pb-2 lg:grid-cols-2">
               <li className="relative flex px-5 py-2 font-fira after:absolute after:bottom-0 after:left-[50%] after:w-[calc(100%-2.5rem)] after:-translate-x-[50%] after:border-b-[1px] after:border-gray-200 last:after:border-none lg:col-span-2 dark:after:border-theme-dark-bg-third">
                 <div className="flex h-16 w-full items-center justify-center lg:h-16">
                   <Button

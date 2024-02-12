@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 export default function TvDetails({ data, setShowWatchlist }) {
   const { t } = useTranslation();
   return (
-    <div className="w-full lg:mx-auto lg:w-[55%] lg:pt-8">
+    <div className="w-full lg:mx-auto lg:w-3/5 lg:pt-8">
       <ContentBanner
         src={data.backdrop_path}
         alt={data.title}

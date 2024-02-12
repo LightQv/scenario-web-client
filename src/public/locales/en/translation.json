@@ -256,6 +256,7 @@
       "stat": "Statistics",
       "settings": {
         "title": "Manage your account",
+        "subtitle": "Edit your informations",
         "description": "Edit here your banner, pseudo, mail or password.",
         "note": "Please note that you'll be disconnected to ensure the update.",
         "delete": {

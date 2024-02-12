@@ -42,10 +42,13 @@ export default function ProfileUpdate() {
   });
 
   return (
-    <section className="border-b-[1px] border-theme-light-bg-third py-2 lg:mx-5 lg:py-4 dark:border-theme-dark-bg-third">
+    <section className="mx-5 border-b-[1px] border-theme-light-bg-third py-2 lg:py-4 dark:border-theme-dark-bg-third">
+      <h1 className="font-abri text-lg text-theme-light-text-primary lg:mb-4 lg:px-0 lg:text-2xl dark:text-theme-dark-text-primary">
+        {t("page.profile.settings.subtitle")}
+      </h1>
       <form
         action="update"
-        className="grid grid-flow-row gap-2 md:grid-cols-2 lg:gap-4"
+        className="grid grid-flow-row gap-2 md:grid-cols-2 lg:mx-16 lg:gap-4"
         onSubmit={formik.handleSubmit}
       >
         <section className="mb-2 mt-2 flex flex-col px-5 md:mt-0 lg:px-0">

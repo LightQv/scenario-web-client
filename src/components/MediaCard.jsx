@@ -33,7 +33,7 @@ export default function MediaCard({
         to={!showEdit && `/details/${data.media_type}/${data.tmdb_id}`}
         className="relative flex h-fit w-full items-center justify-between"
       >
-        <div className="flex h-full items-center justify-start gap-4 pr-2 transition-all lg:w-2/3">
+        <div className="flex h-full w-full items-center justify-start gap-4 pr-2 transition-all">
           {showEdit && (
             <button
               className="text-theme-light-secondary dark:text-theme-dark-secondary"
@@ -64,19 +64,17 @@ export default function MediaCard({
                 }`}
             </h2>
           </section>
+          {viewed && location.pathname !== "/profile" && (
+            <section className="ml-auto flex stroke-theme-light-main dark:stroke-theme-dark-main">
+              <ViewSvg />
+            </section>
+          )}
         </div>
         <img
           src={`https://image.tmdb.org/t/p/w200/${data.poster_path}`}
           alt={data.name}
           className="h-16 rounded-sm border-[1px] border-theme-light-bg-third object-cover lg:h-24 dark:border-theme-dark-bg-third"
         />
-        {viewed && location.pathname !== "/profile" && (
-          <section className="absolute -bottom-1 -right-1 flex items-center justify-center">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-theme-light-bg-third stroke-theme-light-text-primary shadow-md dark:bg-theme-dark-bg-third dark:stroke-theme-dark-text-primary">
-              <ViewSvg />
-            </div>
-          </section>
-        )}
       </Link>
     </li>
   );

@@ -46,7 +46,7 @@ export default function ProfileSettings() {
         </div>
       )}
       {!loading && userData && (
-        <div className="w-full lg:mx-auto lg:w-[55%] lg:pt-8">
+        <div className="w-full lg:mx-auto lg:w-3/5 lg:pt-8">
           <ProfileBanner
             src={userData?.profileBanner}
             setBannerUpdated={setBannerUpdated}

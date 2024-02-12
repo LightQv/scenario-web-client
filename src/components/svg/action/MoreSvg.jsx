@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 export default function MoreSvg({ color }) {
   return (
     <svg
-      width="24px"
-      height="24px"
+      width="18px"
+      height="18px"
       viewBox="0 0 24 24"
       strokeWidth="2"
       fill="none"

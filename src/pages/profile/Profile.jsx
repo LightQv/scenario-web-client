@@ -46,7 +46,7 @@ export default function Profile() {
         </div>
       )}
       {!loading && banner && user && (
-        <div className="w-full lg:mx-auto lg:w-3/5 lg:pt-8">
+        <div className="w-full lg:mx-auto lg:w-3/5 lg:pt-6">
           <ProfileBanner src={banner.profileBanner} />
           <ProfileHeader
             username={user.username}

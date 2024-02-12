@@ -38,7 +38,7 @@ export default function Watchlist() {
         </div>
       )}
       {!loading && (
-        <div className="w-full lg:mx-auto lg:w-[55%] lg:pt-8">
+        <div className="w-full lg:mx-auto lg:w-2/3 lg:pt-8">
           <section className="mx-5 flex flex-col gap-2 border-b-[1px] border-theme-light-bg-third pt-3 lg:gap-4 lg:pt-6 dark:border-theme-dark-bg-third">
             <h1 className="w-3/4 font-abri text-2xl lg:text-4xl">
               {t("page.watchlist.title")}

@@ -256,6 +256,7 @@
       "stat": "Statistiques",
       "settings": {
         "title": "Modifier votre compte",
+        "subtitle": "Éditer vos informations",
         "description": "Changez ici votre bannière, pseudo, email ou mot de passe.",
         "note": "Notez que vous serez déconnecté pour valider les changements.",
         "delete": {

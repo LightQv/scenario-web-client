@@ -49,7 +49,7 @@ export default function ProfileViewList({ title, data, genre }) {
             </Selector>
           </div>
           {filteredList?.length > 0 ? (
-            <ul className="grid grid-flow-row px-5 pb-2 lg:grid-cols-2 lg:px-0">
+            <ul className="grid grid-flow-row pb-2 lg:grid-cols-2 lg:px-0">
               {filteredList
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((el) => (

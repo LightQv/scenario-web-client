@@ -36,7 +36,7 @@ export default function WatchlistContent() {
     setLoading(true);
     if (id) {
       instanceAPI
-        .get(`/api/v1/user/watchlist/detail/${id}`)
+        .get(`/api/v1/user/watchlist/detail/${id}?genre=`)
         .then((res) => {
           setMedia(res.data);
           setUpdated(false);
@@ -91,7 +91,7 @@ export default function WatchlistContent() {
           </section>
           <GenreSelector genre={totalGenres} /> {/* Associate with useFilter */}
           {filteredList?.length > 0 ? (
-            <ul className="grid grid-flow-row px-5 pb-2 lg:grid-cols-2 lg:px-0">
+            <ul className="grid grid-flow-row pb-2 lg:grid-cols-2">
               {filteredList
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((el) => (

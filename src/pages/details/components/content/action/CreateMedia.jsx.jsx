@@ -28,7 +28,7 @@ export default function CreateMedia({
   const { t } = useTranslation();
   const [watchlists, setWatchlists] = useState(null);
   const [genreIds, setGenreIds] = useState(genres);
-  console.log(backdrop);
+
   useEffect(() => {
     if (user.id) {
       instanceAPI

@@ -32,7 +32,7 @@ export const notifyDuplicate = (message) =>
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } pointer-events-auto flex h-12 w-fit max-w-[350px] items-center justify-center gap-2 rounded-lg bg-theme-light-bg-primary px-[10px] py-2 text-sm font-semibold leading-snug text-theme-light-text-primary shadow-toast dark:bg-theme-dark-bg-quad dark:text-theme-dark-text-primary`}
+        } pointer-events-auto flex h-12 w-fit max-w-[350px] items-center justify-center gap-2 rounded-lg bg-theme-light-bg-primary px-[10px] py-2 text-sm font-semibold leading-snug text-theme-light-text-primary shadow-toast dark:bg-theme-dark-bg-third dark:text-theme-dark-text-primary`}
       >
         <span className="h-6 w-6 rounded-full bg-toast-light-warning text-center text-base text-theme-light-text-secondary">
           !

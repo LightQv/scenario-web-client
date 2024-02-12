@@ -21,7 +21,7 @@ export default function Dropdown({
 }) {
   return (
     <div
-      className="cursor-pointer text-theme-light-text-secondary"
+      className="cursor-pointer text-theme-light-text-primary dark:text-theme-dark-text-primary"
       onClick={() => setDropdown(!dropdown)}
     >
       <MoreSvg color={color} />

@@ -6,6 +6,7 @@ import ViewSvg from "../svg/action/ViewSvg";
 import PropTypes from "prop-types";
 import { useView } from "../../hooks/useView";
 import useGenre from "../../hooks/useGenre";
+import UnviewSvg from "../svg/action/UnviewSvg";
 
 export default function ResultCard({ data, index, media_type }) {
   const [searchParams] = useSearchParams();
@@ -24,16 +25,27 @@ export default function ResultCard({ data, index, media_type }) {
             index === 0 ? "lg:w-[70%]" : "lg:w-2/3"
           }`}
         >
-          <section className="h-full">
-            <h1
-              className={`line-clamp-1 font-abri text-base ${
-                index === 0
-                  ? "lg:relative lg:z-10 lg:line-clamp-2 lg:h-fit lg:pb-2 lg:text-5xl lg:leading-[3.4rem]"
-                  : "lg:text-lg"
-              }`}
-            >
-              {data.title || data.name}
-            </h1>
+          <section>
+            <div className="flex w-full items-center justify-between">
+              <h1
+                className={`line-clamp-1 font-abri text-base ${
+                  index === 0
+                    ? "lg:relative lg:z-10 lg:line-clamp-2 lg:h-fit lg:pb-2 lg:text-5xl lg:leading-[3.4rem]"
+                    : "lg:text-lg"
+                }`}
+              >
+                {data.title || data.name}
+              </h1>
+              {viewed ? (
+                <section className="stroke-theme-light-main dark:stroke-theme-dark-main">
+                  <ViewSvg />
+                </section>
+              ) : (
+                <section className="stroke-theme-light-bg-quad dark:stroke-theme-dark-bg-quad">
+                  <UnviewSvg />
+                </section>
+              )}
+            </div>
             <h2
               className={`text-xs italic ${
                 index === 0 ? "lg:text-base" : ""
@@ -60,17 +72,25 @@ export default function ResultCard({ data, index, media_type }) {
             )}
           </section>
           {data.media_type !== "person" && (
-            <section className="mt-auto flex gap-1 lg:gap-2">
-              {genre?.slice(0, 2).map((genre, i) => (
-                <p
-                  className={`rounded-2xl bg-theme-light-bg-third px-3 py-2 text-xs leading-3 shadow-sm dark:bg-theme-dark-bg-third ${
-                    index === 0 ? "lg:px-4 lg:text-sm" : ""
-                  }`}
-                  key={i}
-                >
-                  {genre}
-                </p>
-              ))}
+            <section>
+              <ul className="flex gap-1 lg:gap-2">
+                {genre?.slice(0, 2).map((genre, i) => (
+                  <li
+                    key={i}
+                    className={`line-clamp-1 h-fit overflow-hidden rounded-2xl bg-theme-light-bg-third px-3 py-2 text-xs shadow-sm dark:bg-theme-dark-bg-third ${
+                      index === 0 ? "lg:px-4" : ""
+                    }`}
+                  >
+                    <p
+                      className={`line-clamp-1 text-xs ${
+                        index === 0 ? "lg:text-sm" : ""
+                      }`}
+                    >
+                      {genre}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
         </div>
@@ -92,21 +112,6 @@ export default function ResultCard({ data, index, media_type }) {
             >
               {data.vote_average?.toFixed(1)}
             </p>
-          </section>
-        )}
-        {viewed && (
-          <section
-            className={`absolute bottom-4 right-14 flex items-center justify-center ${
-              index === 0 ? "lg:right-20" : "lg:bottom-[0.85rem] lg:right-14"
-            }`}
-          >
-            <div
-              className={`flex h-8 w-8 items-center justify-center rounded-full bg-theme-light-bg-third stroke-theme-light-text-primary shadow-md dark:bg-theme-dark-bg-third dark:stroke-theme-dark-text-primary ${
-                index === 0 ? "lg:h-10 lg:w-10" : "lg:h-8 lg:w-8"
-              }`}
-            >
-              <ViewSvg />
-            </div>
           </section>
         )}
       </Link>

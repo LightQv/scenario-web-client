@@ -70,7 +70,7 @@ export default function ContentBanner({
         </div>
       )}
       {user.id && type !== "person" && (
-        <div className="absolute right-4 top-2">
+        <div className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-theme-light-bg-primary transition-all hover:bg-theme-light-bg-quad dark:bg-theme-dark-bg-primary dark:hover:bg-theme-dark-bg-quad">
           <Dropdown
             dropdown={dropdown}
             setDropdown={setDropdown}

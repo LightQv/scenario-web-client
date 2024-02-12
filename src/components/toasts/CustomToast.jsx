@@ -1,20 +1,30 @@
+import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
+import ThemeContext from "../../contexts/ThemeContext";
 
 export default function CustomToasts() {
+  const { darkTheme } = useContext(ThemeContext);
+
   return (
     <Toaster
       toastOptions={{
         success: {
-          className:
-            "bg-theme-light-bg-primary text-theme-light-text-primary dark:bg-theme-dark-bg-quad dark:text-theme-dark-text-primary text-sm font-semibold",
+          style: {
+            backgroundColor: darkTheme ? "#1D1F23" : "#FFFFFF",
+            color: darkTheme ? "#E7E9EA" : "#000000",
+          },
+          className: "text-sm font-semibold",
           iconTheme: {
             primary: "#549c47",
             secondary: "#FFFFFF",
           },
         },
         error: {
-          className:
-            "bg-theme-light-bg-primary text-theme-light-text-primary dark:bg-theme-dark-bg-quad dark:text-theme-dark-text-primary text-sm font-semibold",
+          style: {
+            backgroundColor: darkTheme ? "#1D1F23" : "#FFFFFF",
+            color: darkTheme ? "#E7E9EA" : "#000000",
+          },
+          className: "text-sm font-semibold",
           iconTheme: {
             primary: "#ef4444",
             secondary: "#FFFFFF",

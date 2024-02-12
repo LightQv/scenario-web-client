@@ -7,10 +7,13 @@ import PropTypes from "prop-types";
 import { useView } from "../../hooks/useView";
 import useGenre from "../../hooks/useGenre";
 import UnviewSvg from "../svg/action/UnviewSvg";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function ResultCard({ data, index, media_type }) {
   const [searchParams] = useSearchParams();
   const genre = useGenre(data, media_type);
+  const { user } = useContext(UserContext);
   const { viewed } = useView(data.id, searchParams.get("media"));
   const { t } = useTranslation();
 
@@ -36,11 +39,12 @@ export default function ResultCard({ data, index, media_type }) {
               >
                 {data.title || data.name}
               </h1>
-              {viewed ? (
+              {user.id && viewed && (
                 <section className="stroke-theme-light-main dark:stroke-theme-dark-main">
                   <ViewSvg />
                 </section>
-              ) : (
+              )}
+              {user.id && !viewed && (
                 <section className="stroke-theme-light-bg-quad dark:stroke-theme-dark-bg-quad">
                   <UnviewSvg />
                 </section>

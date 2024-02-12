@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export default function PersonDetails({ data }) {
   return (
-    <div className="w-full lg:mx-auto lg:flex lg:w-3/5 lg:flex-col lg:pt-8">
+    <div className="w-full lg:mx-auto lg:flex lg:w-3/5 lg:flex-col lg:pt-6">
       <PersonBanner src={data.profile_path} alt={data.name} />
       <PersonHeader
         src={data.profile_path}

@@ -54,7 +54,7 @@ export default function Top() {
         </div>
       )}
       {!loading && results && results.length >= 1 && (
-        <div className="flex w-full flex-col lg:items-center lg:pt-6">
+        <div className="flex w-full flex-col lg:items-center lg:pt-2">
           <ul className="lg:grid lg:w-2/3 lg:grid-cols-2">
             {results?.map((data, index) => (
               <ResultCard

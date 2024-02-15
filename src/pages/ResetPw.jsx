@@ -122,7 +122,7 @@ export default function ResetPw() {
             type="submit"
             disabled={!resetSchema.isValidSync(formik.values)}
             onSubmit={() => formik.handleSubmit}
-            className="mt-8 w-fit cursor-pointer rounded-md border-[1px] border-theme-light-secondary bg-theme-light-secondary px-4 py-2 text-sm font-semibold transition-all hover:bg-theme-dark-secondary disabled:cursor-default disabled:border-theme-dark-bg-primary disabled:bg-transparent disabled:text-theme-dark-bg-primary dark:border-theme-dark-secondary dark:bg-theme-dark-secondary dark:text-theme-dark-bg-third dark:hover:bg-theme-light-secondary dark:disabled:border-theme-dark-text-primary dark:disabled:bg-transparent dark:disabled:text-theme-dark-text-primary"
+            className="mt-8 w-fit cursor-pointer rounded-md border-[1px] border-theme-light-secondary bg-theme-light-secondary px-4 py-2 text-sm font-semibold text-theme-light-text-secondary transition-all hover:bg-theme-dark-secondary disabled:cursor-default disabled:border-theme-dark-bg-primary disabled:bg-transparent disabled:text-theme-dark-bg-primary dark:border-theme-dark-secondary dark:bg-theme-dark-secondary dark:text-theme-dark-text-primary dark:hover:bg-theme-light-secondary dark:disabled:border-theme-dark-text-primary dark:disabled:bg-transparent dark:disabled:text-theme-dark-text-primary"
           >
             {t("auth.form.submit.reset").toUpperCase()}
           </button>

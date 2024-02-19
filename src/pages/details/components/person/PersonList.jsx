@@ -34,7 +34,16 @@ export default function PersonList() {
       <h1 className="px-5 font-abri text-lg lg:px-0 lg:text-2xl">
         {t("page.person.title")}
       </h1>
-      <Carousel>
+      <Carousel
+        leftPosition="-left-20 top-[calc(50%-12rem)]"
+        rightPosition="-right-20 top-[calc(50%-12rem)]"
+        containerHeight="h-full"
+        btnHeight="h-8"
+        btnWidth="w-8"
+        textSize="text-xl"
+        leftScrollLength={-200}
+        rightScrollLength={200}
+      >
         {creditsByPopularity?.map((el) => (
           <li className="snap-end lg:snap-start" key={el.id}>
             <Link

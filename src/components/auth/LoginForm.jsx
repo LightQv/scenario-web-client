@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { loginSchema } from "../../services/validators";
 import { instanceAPI } from "../../services/instances";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import { notifyError } from "../../components/toasts/Toast";
 import PropTypes from "prop-types";
@@ -11,6 +11,7 @@ import SubmitBtn from "../SubmitBtn";
 export default function LoginForm({ setShowAuth, setForm, formRef }) {
   const { login } = useContext(UserContext);
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -22,15 +23,18 @@ export default function LoginForm({ setShowAuth, setForm, formRef }) {
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const res = await instanceAPI.post("/api/v1/auth/login", values);
         if (res) {
           login(res.data);
           setShowAuth(false);
+          setLoading(false);
         } else throw new Error();
       } catch (err) {
         if (err.request.status === 401 || err.request.status === 403) {
           notifyError(t("toast.login"));
         }
+        setLoading(false);
       }
     },
   });
@@ -92,8 +96,9 @@ export default function LoginForm({ setShowAuth, setForm, formRef }) {
         </section>
         <section className="mt-8">
           <SubmitBtn
-            disabled={!loginSchema.isValidSync(formik.values)}
+            disabled={!loginSchema.isValidSync(formik.values) | loading}
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -101,7 +106,7 @@ export default function LoginForm({ setShowAuth, setForm, formRef }) {
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("auth.form.submit.login").toUpperCase()}
+            {t("auth.form.submit.login")}
           </SubmitBtn>
         </section>
       </form>

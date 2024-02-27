@@ -5,9 +5,11 @@ import { instanceAPI } from "../../services/instances";
 import { notifyDuplicate, notifyError } from "../../components/toasts/Toast";
 import PropTypes from "prop-types";
 import SubmitBtn from "../SubmitBtn";
+import { useState } from "react";
 
 export default function RegisterForm({ setForm, formRef }) {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -21,9 +23,11 @@ export default function RegisterForm({ setForm, formRef }) {
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const res = await instanceAPI.post("/api/v1/auth/register", values);
         if (res) {
           setForm({ login: true, register: false, reset: false });
+          setLoading(false);
         } else throw new Error();
       } catch (err) {
         if (err.request.status === 400) {
@@ -33,6 +37,7 @@ export default function RegisterForm({ setForm, formRef }) {
           notifyError(t("toast.error"));
         }
       }
+      setLoading(false);
     },
   });
 
@@ -141,8 +146,9 @@ export default function RegisterForm({ setForm, formRef }) {
         </section>
         <section className="mt-8">
           <SubmitBtn
-            disabled={!registerSchema.isValidSync(formik.values)}
+            disabled={!registerSchema.isValidSync(formik.values) || loading}
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -150,7 +156,7 @@ export default function RegisterForm({ setForm, formRef }) {
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("auth.form.submit.register").toUpperCase()}
+            {t("auth.form.submit.register")}
           </SubmitBtn>
         </section>
       </form>

@@ -37,8 +37,8 @@ export default function Home() {
         <h1 className="font-dela text-[6.5rem] leading-[6.5rem] lg:text-[7.5rem] lg:leading-[8rem]">
           シナリオへようこそ
         </h1>
-        <p className="font-abri text-lg lg:text-2xl">
-          {t("page.home.title").toUpperCase()}
+        <p className="font-abri text-lg uppercase lg:text-2xl">
+          {t("page.home.title")}
         </p>
       </section>
     </main>

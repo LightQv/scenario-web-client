@@ -28,6 +28,7 @@ export default function CreateMedia({
   const { t } = useTranslation();
   const [watchlists, setWatchlists] = useState(null);
   const [genreIds, setGenreIds] = useState(genres);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user.id) {
@@ -60,6 +61,7 @@ export default function CreateMedia({
         (el) => el.id === values.watchlistId
       );
       try {
+        setLoading(true);
         const isCreated = await instanceAPI.post(`/api/v1/media`, {
           tmdb_id: Number(id),
           genre_ids: genreIds,
@@ -73,6 +75,7 @@ export default function CreateMedia({
         });
         if (isCreated) {
           setShowModal(false);
+          setLoading(false);
           notifySuccess(
             t("toast.success.media.add") + ` "${watchlistSelected.title}"`
           );
@@ -81,6 +84,7 @@ export default function CreateMedia({
         if (err) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -133,9 +137,11 @@ export default function CreateMedia({
           <SubmitBtn
             onSubmit={() => formik.handleSubmit}
             disabled={
-              !createMediaSchema.isValidSync(formik.values) &&
-              formik.values !== null
+              (!createMediaSchema.isValidSync(formik.values) &&
+                formik.values !== null) ||
+              loading
             }
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -143,7 +149,7 @@ export default function CreateMedia({
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("modal.media.create.submit").toUpperCase()}
+            {t("modal.media.create.submit")}
           </SubmitBtn>
         </section>
       </form>

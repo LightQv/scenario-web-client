@@ -5,9 +5,11 @@ import { instanceAPI } from "../../services/instances";
 import { notifyError, notifySuccess } from "../toasts/Toast";
 import PropTypes from "prop-types";
 import SubmitBtn from "../SubmitBtn";
+import { useState } from "react";
 
 export default function ForgotForm({ setForm, formRef }) {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -18,17 +20,20 @@ export default function ForgotForm({ setForm, formRef }) {
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const res = await instanceAPI.post(
           "/api/v1/auth/forgotten-password",
           values
         );
         if (res) {
           notifySuccess(t("toast.success.forgot"));
+          setLoading(false);
         } else throw new Error();
       } catch (err) {
         if (err.request?.status === 500) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -72,8 +77,9 @@ export default function ForgotForm({ setForm, formRef }) {
         </section>
         <section className="mt-8">
           <SubmitBtn
-            disabled={!forgottenSchema.isValidSync(formik.values)}
+            disabled={!forgottenSchema.isValidSync(formik.values) || loading}
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -81,7 +87,7 @@ export default function ForgotForm({ setForm, formRef }) {
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("auth.form.submit.forgot").toUpperCase()}
+            {t("auth.form.submit.forgot")}
           </SubmitBtn>
         </section>
       </form>

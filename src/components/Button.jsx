@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import ButtonLoader from "./ButtonLoader";
 
 export default function Button({
   onSubmit,
@@ -6,6 +7,7 @@ export default function Button({
   disabled,
   disableColor,
   activeColor,
+  isLoading,
   children,
 }) {
   return (
@@ -18,7 +20,7 @@ export default function Button({
       border-current bg-transparent px-4
   py-2 text-xs transition-all`}
     >
-      {children}
+      {isLoading ? <ButtonLoader /> : children}
     </button>
   );
 }
@@ -29,5 +31,6 @@ Button.propTypes = {
   disabled: PropTypes.shape(),
   disableColor: PropTypes.string,
   activeColor: PropTypes.string,
+  isLoading: PropTypes.bool,
   children: PropTypes.string,
 };

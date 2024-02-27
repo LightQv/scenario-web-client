@@ -28,7 +28,7 @@ export default function NavMobile({
   const location = useLocation();
   const { t } = useTranslation();
   const { darkTheme } = useContext(ThemeContext);
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, loading } = useContext(UserContext);
   const [topDropdown, setTopDropdown] = useState(false);
   const [discoverDropdown, setDiscoverDropdown] = useState(false);
 
@@ -113,13 +113,15 @@ export default function NavMobile({
               >
                 {el.title === t("navigation.link4") && <WatchlistSvg />}
                 {el.title === t("navigation.link5") && <ProfileSvg />}
-                <p>{el.title.toUpperCase()}</p>
+                <p className="uppercase">{el.title}</p>
               </NavLink>
             </li>
           ))}
         {user.id ? (
           <Button
             onClick={logout}
+            disabled={loading}
+            isLoading={loading}
             activeColor="active:border-theme-light-main active:text-theme-light-main dark:active:border-theme-dark-main dark:active:text-theme-dark-main"
           >
             {t("auth.form.submit.logout")}

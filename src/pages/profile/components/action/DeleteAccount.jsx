@@ -6,7 +6,7 @@ import {
   notifySuccess,
 } from "../../../../components/toasts/Toast";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../../../contexts/UserContext";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
@@ -16,6 +16,7 @@ export default function DeleteAccount({ email, setShowModal, elRef }) {
   const { user, logout } = useContext(UserContext);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const deleteSchema = Yup.object({
     email: Yup.string().matches(new RegExp(email + "/bye-scenario"), {
@@ -32,17 +33,20 @@ export default function DeleteAccount({ email, setShowModal, elRef }) {
 
     onSubmit: async () => {
       try {
+        setLoading(true);
         const res = await instanceAPI.delete(`/api/v1/user/${user.id}`);
         if (res) {
           logout();
           notifySuccess(t("toast.success.profile.delete"));
           setShowModal(false);
+          setLoading(false);
           navigate("/");
         }
       } catch (err) {
         if (err.request?.status === 401 || err.request?.status === 403) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -85,8 +89,9 @@ export default function DeleteAccount({ email, setShowModal, elRef }) {
         </section>
         <section className="mt-8">
           <SubmitBtn
-            disabled={!deleteSchema.isValidSync(formik.values)}
+            disabled={!deleteSchema.isValidSync(formik.values) || loading}
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -94,7 +99,7 @@ export default function DeleteAccount({ email, setShowModal, elRef }) {
               "border-theme-light-secondary text-theme-light-secondary hover:bg-theme-light-bg-secondary dark:border-theme-dark-secondary dark:text-theme-dark-secondary dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("modal.profile.delete.submit").toUpperCase()}
+            {t("modal.profile.delete.submit")}
           </SubmitBtn>
         </section>
         <section className="mt-6 text-center text-xs lg:text-sm dark:text-theme-dark-bg-quad">

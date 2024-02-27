@@ -3,6 +3,7 @@ import { instanceAPI } from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
 import SubmitBtn from "../../../../components/SubmitBtn";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function DeleteMedia({
   elRef,
@@ -11,19 +12,23 @@ export default function DeleteMedia({
   dataId,
 }) {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const deleteMedia = async () => {
     if (dataId) {
       try {
+        setLoading(true);
         const res = await instanceAPI.delete(`/api/v1/media/${dataId}`);
         if (res) {
           setUpdated(true);
           setShowModal(false);
+          setLoading(false);
         }
       } catch (err) {
         if (err.request?.status !== 403) {
           notifyError(t("toast.error"));
         }
+        setLoading(true);
       }
     }
   };
@@ -42,11 +47,16 @@ export default function DeleteMedia({
       <div className="flex h-fit w-full items-center justify-center gap-2">
         <SubmitBtn
           onClick={deleteMedia}
+          isLoading={loading}
+          disabled={loading}
+          disableColor={
+            "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
+          }
           activeColor={
             "border-theme-light-secondary text-theme-light-secondary whitespace-nowrap hover:bg-theme-light-bg-secondary dark:border-theme-dark-secondary dark:text-theme-dark-secondary dark:hover:bg-theme-dark-bg-third"
           }
         >
-          {t("modal.media.delete.submit").toUpperCase()}
+          {t("modal.media.delete.submit")}
         </SubmitBtn>
         <SubmitBtn
           onClick={() => setShowModal(false)}
@@ -54,7 +64,7 @@ export default function DeleteMedia({
             "border-theme-light-text-primary dark:border-theme-dark-text-primary hover:border-theme-light-main hover:text-theme-light-main hover:bg-theme-light-bg-main dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
           }
         >
-          {t("modal.watchlist.delete.cancel").toUpperCase()}
+          {t("modal.watchlist.delete.cancel")}
         </SubmitBtn>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
@@ -11,6 +11,7 @@ import SubmitBtn from "../../../../components/SubmitBtn";
 export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
   const { user } = useContext(UserContext);
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -21,6 +22,7 @@ export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const isCreated = await instanceAPI.post(`/api/v1/watchlist`, {
           title: values.title,
           authorId: user.id,
@@ -28,11 +30,13 @@ export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
         if (isCreated) {
           setShowModal(false);
           setUpdated(true);
+          setLoading(false);
         }
       } catch (err) {
         if (err) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -73,8 +77,11 @@ export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
         </section>
         <section className="mt-4">
           <SubmitBtn
-            disabled={!createWatchlistSchema.isValidSync(formik.values)}
+            disabled={
+              !createWatchlistSchema.isValidSync(formik.values) || loading
+            }
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
             }
@@ -82,7 +89,7 @@ export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("modal.watchlist.create.submit").toUpperCase()}
+            {t("modal.watchlist.create.submit")}
           </SubmitBtn>
         </section>
       </form>

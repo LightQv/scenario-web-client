@@ -16,12 +16,13 @@ import WatchlistSvg from "../../svg/nav/WatchlistSvg";
 import ProfileSvg from "../../svg/nav/ProfileSvg";
 import PropTypes from "prop-types";
 import Button from "../../Button";
+import ButtonLoader from "../../ButtonLoader";
 
 export default function NavDesktop({ setShowSearch, setShowAuth }) {
   const location = useLocation();
   const { t } = useTranslation();
   const { darkTheme } = useContext(ThemeContext);
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, loading } = useContext(UserContext);
   const [topDropdown, setTopDropdown] = useState(false);
   const [discoverDropdown, setDiscoverDropdown] = useState(false);
 
@@ -105,7 +106,7 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
                 >
                   {el.title === t("navigation.link4") && <WatchlistSvg />}
                   {el.title === t("navigation.link5") && <ProfileSvg />}
-                  <p>{el.title.toUpperCase()}</p>
+                  <p className="uppercase">{el.title}</p>
                 </NavLink>
               </li>
             ))}
@@ -115,6 +116,8 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
         {user.id ? (
           <Button
             onClick={logout}
+            disabled={loading}
+            isLoading={loading}
             activeColor="hover:border-theme-light-main hover:text-theme-light-main dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
           >
             {t("auth.form.submit.logout")}
@@ -124,7 +127,7 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
             onClick={() => setShowAuth(true)}
             activeColor="hover:border-theme-light-main hover:text-theme-light-main dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
           >
-            {t("auth.form.submit.login")}
+            {loading ? <ButtonLoader /> : t("auth.form.submit.login")}
           </Button>
         )}
         <ThemeSwitch />

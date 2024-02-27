@@ -23,8 +23,8 @@ export default function ProfileBanner({
         />
       ) : (
         <div className="flex h-56 w-full items-center justify-center border-[1px] border-theme-light-bg-third bg-theme-light-main object-cover lg:h-[25rem] dark:border-theme-dark-bg-third dark:bg-theme-dark-main">
-          <p className="w-fit text-xl font-bold lg:text-3xl dark:text-theme-dark-text-secondary">
-            {t("page.profile.noBanner.title").toUpperCase()}
+          <p className="w-fit text-xl font-bold uppercase lg:text-3xl dark:text-theme-dark-text-secondary">
+            {t("page.profile.noBanner.title")}
           </p>
         </div>
       )}

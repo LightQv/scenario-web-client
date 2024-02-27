@@ -72,9 +72,9 @@ export default function ModalSearch({ setShowSearch, setShowBurger }) {
             type="submit"
             disabled={!searchSchema.isValidSync(formik.values)}
             onSubmit={() => formik.handleSubmit}
-            className="cursor-pointer self-end rounded-md border-[1px] border-theme-light-main bg-theme-light-main px-4 py-2 text-sm font-semibold mix-blend-screen transition-all disabled:cursor-default disabled:border-theme-light-bg-primary disabled:bg-transparent disabled:text-theme-light-bg-primary dark:border-theme-dark-main dark:bg-theme-dark-main dark:text-theme-dark-text-primary dark:disabled:border-theme-dark-text-primary dark:disabled:bg-transparent dark:disabled:text-theme-dark-text-primary"
+            className="cursor-pointer self-end rounded-md border-[1px] border-theme-light-main bg-theme-light-main px-4 py-2 text-sm font-semibold uppercase mix-blend-screen transition-all disabled:cursor-default disabled:border-theme-light-bg-primary disabled:bg-transparent disabled:text-theme-light-bg-primary dark:border-theme-dark-main dark:bg-theme-dark-main dark:text-theme-dark-text-primary dark:disabled:border-theme-dark-text-primary dark:disabled:bg-transparent dark:disabled:text-theme-dark-text-primary"
           >
-            {t("modal.search.submit").toUpperCase()}
+            {t("modal.search.submit")}
           </button>
           {formik.errors.query && (
             <p className="text-xs text-toast-light-error dark:text-toast-dark-error">

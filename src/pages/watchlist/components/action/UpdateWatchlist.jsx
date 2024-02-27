@@ -6,6 +6,7 @@ import { notifyError } from "../../../../components/toasts/Toast";
 import { updateWatchlistSchema } from "../../../../services/validators";
 import PropTypes from "prop-types";
 import SubmitBtn from "../../../../components/SubmitBtn";
+import { useState } from "react";
 
 export default function UpdateWatchlist({
   setShowModal,
@@ -15,6 +16,7 @@ export default function UpdateWatchlist({
 }) {
   const { id } = useParams();
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -25,17 +27,20 @@ export default function UpdateWatchlist({
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const isModified = await instanceAPI.put(`/api/v1/watchlist/${id}`, {
           title: values.newTitle,
         });
         if (isModified) {
           setShowModal(false);
           setUpdated(true);
+          setLoading(false);
         }
       } catch (err) {
         if (err) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -77,10 +82,12 @@ export default function UpdateWatchlist({
         <section className="mt-4">
           <SubmitBtn
             disabled={
-              (formik.values.newTitle === title ||
+              ((formik.values.newTitle === title ||
                 formik.values.newTitle === "") &&
-              updateWatchlistSchema
+                updateWatchlistSchema) ||
+              loading
             }
+            isLoading={loading}
             onSubmit={() => formik.handleSubmit}
             disableColor={
               "disabled:border-theme-dark-bg-primary disabled:hover:bg-transparent disabled:text-theme-dark-bg-primary dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary"
@@ -89,7 +96,7 @@ export default function UpdateWatchlist({
               "border-theme-light-main text-theme-light-main hover:bg-theme-light-bg-secondary dark:border-theme-dark-main dark:text-theme-dark-main dark:hover:bg-theme-dark-bg-third"
             }
           >
-            {t("modal.watchlist.update.submit").toUpperCase()}
+            {t("modal.watchlist.update.submit")}
           </SubmitBtn>
         </section>
       </form>

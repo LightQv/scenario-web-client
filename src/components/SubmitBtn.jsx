@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import ButtonLoader from "./ButtonLoader";
 
 export default function SubmitBtn({
   onSubmit,
@@ -6,6 +7,7 @@ export default function SubmitBtn({
   disabled,
   disableColor,
   activeColor,
+  isLoading,
   children,
 }) {
   return (
@@ -14,9 +16,9 @@ export default function SubmitBtn({
       disabled={disabled}
       onSubmit={() => onSubmit}
       onClick={onClick}
-      className={`${disableColor} ${activeColor} w-fit cursor-pointer rounded-md border-[1px] bg-transparent px-4 py-2 text-sm font-semibold transition-all disabled:cursor-default`}
+      className={`${disableColor} ${activeColor} w-fit cursor-pointer rounded-md border-[1px] bg-transparent px-4 py-2 text-sm font-semibold uppercase transition-all disabled:cursor-default`}
     >
-      {children}
+      {isLoading ? <ButtonLoader /> : children}
     </button>
   );
 }
@@ -27,5 +29,6 @@ SubmitBtn.propTypes = {
   disabled: PropTypes.oneOfType([PropTypes.shape(), PropTypes.bool]),
   disableColor: PropTypes.string,
   activeColor: PropTypes.string,
+  isLoading: PropTypes.bool,
   children: PropTypes.string,
 };

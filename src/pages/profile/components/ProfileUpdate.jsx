@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import UserContext from "../../../contexts/UserContext";
 import { instanceAPI } from "../../../services/instances";
@@ -10,6 +10,7 @@ import Button from "../../../components/Button";
 export default function ProfileUpdate() {
   const { user, logout } = useContext(UserContext);
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -23,6 +24,7 @@ export default function ProfileUpdate() {
 
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const isUpdated = await instanceAPI.put(`/api/v1/user/${user.id}`, {
           username: values.username,
           email: values.email,
@@ -31,12 +33,14 @@ export default function ProfileUpdate() {
         });
         if (isUpdated) {
           logout();
+          setLoading(false);
           notifySuccess(t("toast.success.profile.update"));
         }
       } catch (err) {
         if (err) {
           notifyError(t("toast.error"));
         }
+        setLoading(false);
       }
     },
   });
@@ -147,8 +151,9 @@ export default function ProfileUpdate() {
         </section>
         <section className="mx-auto my-2 w-fit md:col-span-2 md:mb-2 md:mt-0">
           <Button
-            disabled={!registerSchema.isValidSync(formik.values)}
+            disabled={!registerSchema.isValidSync(formik.values) || loading}
             onSubmit={() => formik.handleSubmit}
+            isLoading={loading}
             disableColor={`disabled:border-theme-light-bg-quad disabled:hover:bg-transparent disabled:text-theme-light-bg-quad dark:disabled:border-theme-dark-text-primary dark:disabled:text-theme-dark-text-primary`}
             activeColor="hover:border-theme-light-main hover:text-theme-light-main dark:hover:border-theme-dark-main dark:hover:text-theme-dark-main"
           >

@@ -11,6 +11,7 @@ export function AuthHandler({ children }) {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || "{}"
   );
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,10 +22,12 @@ export function AuthHandler({ children }) {
 
   const logout = useCallback(async () => {
     try {
+      setLoading(true);
       const isLogout = await instanceAPI.get("/auth/logout");
       if (isLogout) {
         setUser({});
         localStorage.removeItem("user");
+        setLoading(false);
         if (
           location.pathname === "/watchlist" ||
           location.pathname === "/profile"
@@ -34,12 +37,13 @@ export function AuthHandler({ children }) {
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   }, [location.pathname, navigate]);
 
   const memo = useMemo(() => {
-    return { user, setUser, login, logout };
-  }, [user, logout]);
+    return { user, setUser, login, logout, loading };
+  }, [user, logout, loading]);
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;
 }

@@ -79,6 +79,7 @@ export default {
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
+        loading: "loading 800ms infinite linear",
       },
       keyframes: {
         enter: {
@@ -93,6 +94,14 @@ export default {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        loading: {
+          "0%": { transform: "translateX(-100%) scaleX(0.5)" },
+          "50%": { transform: "translateX(0) scaleX(0.5)" },
+          "100%": { transform: "translateX(100%) scaleX(0.5)" },
+        },
+      },
+      transformOrigin: {
+        "left-right": "0% 50%",
       },
       boxShadow: {
         toast: "0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05)",

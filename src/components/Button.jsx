@@ -20,7 +20,8 @@ export default function Button({
       border-current bg-transparent px-4
   py-2 text-xs transition-all`}
     >
-      {isLoading ? <ButtonLoader /> : children}
+      {children}
+      {isLoading && <ButtonLoader />}
     </button>
   );
 }

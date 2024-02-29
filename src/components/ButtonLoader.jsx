@@ -1,17 +1,7 @@
-import { useContext } from "react";
-import ThemeContext from "../contexts/ThemeContext";
-import { Oval } from "react-loader-spinner";
-
 export default function ButtonLoader() {
-  const { darkTheme } = useContext(ThemeContext);
   return (
-    <Oval
-      ariaLabel="oval-loading"
-      color={darkTheme ? "#f9cd4a" : "#eab208"}
-      secondaryColor={darkTheme ? "#f9cd4a" : "#eab208"}
-      height={20}
-      width={20}
-      strokeWidth={6}
-    />
+    <div className="absolute bottom-0 left-0 h-1 w-full overflow-hidden">
+      <div className="animate-loading origin-left-right h-full w-full bg-theme-light-main dark:bg-theme-dark-main" />
+    </div>
   );
 }

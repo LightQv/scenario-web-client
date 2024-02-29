@@ -16,9 +16,10 @@ export default function SubmitBtn({
       disabled={disabled}
       onSubmit={() => onSubmit}
       onClick={onClick}
-      className={`${disableColor} ${activeColor} w-fit cursor-pointer rounded-md border-[1px] bg-transparent px-4 py-2 text-sm font-semibold uppercase transition-all disabled:cursor-default`}
+      className={`${disableColor} ${activeColor} relative w-fit cursor-pointer overflow-hidden rounded-md border-[1px] bg-transparent px-4 py-2 text-sm font-semibold uppercase transition-all disabled:cursor-default`}
     >
-      {isLoading ? <ButtonLoader /> : children}
+      {children}
+      {isLoading && <ButtonLoader />}
     </button>
   );
 }

@@ -28,7 +28,7 @@ export default function UpdateWatchlist({
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const isModified = await instanceAPI.put(`/api/v1/watchlist/${id}`, {
+        const isModified = await instanceAPI.put(`/api/v1/watchlists/${id}`, {
           title: values.newTitle,
         });
         if (isModified) {

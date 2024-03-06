@@ -23,7 +23,7 @@ export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const isCreated = await instanceAPI.post(`/api/v1/watchlist`, {
+        const isCreated = await instanceAPI.post(`/api/v1/watchlists`, {
           title: values.title,
           authorId: user.id,
         });

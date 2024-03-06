@@ -34,7 +34,7 @@ export default function DeleteAccount({ email, setShowModal, elRef }) {
     onSubmit: async () => {
       try {
         setLoading(true);
-        const res = await instanceAPI.delete(`/api/v1/user/${user.id}`);
+        const res = await instanceAPI.delete(`/api/v1/users/${user.id}`);
         if (res) {
           logout();
           notifySuccess(t("toast.success.profile.delete"));

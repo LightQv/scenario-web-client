@@ -20,7 +20,7 @@ export default function Watchlist() {
   useEffect(() => {
     setLoading(true);
     if (user.id) {
-      instanceAPI(`/api/v1/user/watchlist/${user.id}`)
+      instanceAPI(`/api/v1/watchlists/${user.id}`)
         .then((res) => {
           setWatchlists(res.data);
           setWatchlistUpdated(false);

@@ -42,7 +42,7 @@ export default function DecadeCount() {
   useEffect(() => {
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/year/movie/${user.id}`)
+        .get(`/api/v1/stats/year/movie/${user.id}`)
         .then(({ data }) => {
           setMovieViews(data);
         })
@@ -50,7 +50,7 @@ export default function DecadeCount() {
     }
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/year/tv/${user.id}`)
+        .get(`/api/v1/stats/year/tv/${user.id}`)
         .then(({ data }) => {
           setTvViews(data);
         })

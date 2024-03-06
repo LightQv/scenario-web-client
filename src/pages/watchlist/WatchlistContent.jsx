@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Loader from "../../components/ui/Loader";
 import { instanceAPI } from "../../services/instances";
@@ -13,7 +13,6 @@ import ScrollTopBtn from "../../components/ui/ScrollTopBtn";
 import DeleteWatchlist from "./components/action/DeleteWatchlist";
 import CheckSvg from "../../components/svg/action/CheckSvg";
 import DeleteMedia from "./components/action/DeleteMedia";
-import useFilter from "../../hooks/useFilter";
 import GenreSelector from "./components/GenreSelector";
 import GenresContext from "../../contexts/GenresContext";
 import ShiftMedia from "./components/action/ShiftMedia";
@@ -21,6 +20,7 @@ import ShiftMedia from "./components/action/ShiftMedia";
 export default function WatchlistContent() {
   const { id } = useParams();
   const { totalGenres } = useContext(GenresContext);
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState(null);
   const [dropdown, setDropdown] = useState(false);
@@ -31,14 +31,14 @@ export default function WatchlistContent() {
   const [showRename, setShowRename] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const filteredList = useFilter(media?.medias);
   const { t } = useTranslation();
 
   useEffect(() => {
+    const currentGenre = searchParams.get("genre") || "";
     setLoading(true);
     if (id) {
       instanceAPI
-        .get(`/api/v1/watchlists/detail/${id}?genre=`)
+        .get(`/api/v1/watchlists/detail/${id}?genre=${currentGenre}`)
         .then((res) => {
           setMedia(res.data);
           setUpdated(false);
@@ -50,7 +50,7 @@ export default function WatchlistContent() {
           }
         });
     }
-  }, [id, t, updated]);
+  }, [id, t, updated, searchParams]);
 
   return (
     <main className="relative flex min-h-screen justify-between bg-theme-light-bg-primary pt-12 font-fira 2xl:mx-auto 3xl:w-1/2 dark:bg-theme-dark-bg-primary dark:text-theme-dark-text-primary">
@@ -92,10 +92,10 @@ export default function WatchlistContent() {
                 : t("page.watchlist.count.singular")}
             </p>
           </section>
-          <GenreSelector genre={totalGenres} /> {/* Associate with useFilter */}
-          {filteredList?.length > 0 ? (
+          <GenreSelector genre={totalGenres} />
+          {media.medias?.length > 0 ? (
             <ul className="grid grid-flow-row pb-2 lg:grid-cols-2">
-              {filteredList
+              {media.medias
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((el) => (
                   <MediaCard

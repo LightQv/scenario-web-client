@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useContext } from "react";
 import GenresContext from "../../../../contexts/GenresContext";
 import { useTranslation } from "react-i18next";
-import Carousel from "../../../../components/Carousel";
+import Carousel from "../../../../components/ui/Carousel";
 
 export default function GenreBar() {
   const { movieGenres, tvGenres } = useContext(GenresContext);

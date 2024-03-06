@@ -6,7 +6,7 @@ import { instanceAPI } from "../../../../services/instances";
 import UserContext from "../../../../contexts/UserContext";
 import { notifyError } from "../../../../components/toasts/Toast";
 import PropTypes from "prop-types";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 
 export default function DeleteBanner({ elRef, setShowModal, setUpdated, src }) {
   const { user } = useContext(UserContext);

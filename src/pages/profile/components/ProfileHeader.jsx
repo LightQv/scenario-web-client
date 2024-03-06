@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { runtimeConvert } from "../../../services/utils";
 import PropTypes from "prop-types";
-import Button from "../../../components/Button";
+import Button from "../../../components/ui/Button";
 import { Link } from "react-router-dom";
 
 export default function ProfileHeader({

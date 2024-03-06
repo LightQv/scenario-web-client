@@ -6,7 +6,7 @@ import { instanceAPI } from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
 import { createWatchlistSchema } from "../../../../services/validators";
 import PropTypes from "prop-types";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 
 export default function CreateWatchlist({ setShowModal, setUpdated, elRef }) {
   const { user } = useContext(UserContext);

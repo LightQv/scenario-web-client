@@ -5,7 +5,7 @@ import { resetSchema } from "../services/validators";
 import { instanceAPI } from "../services/instances";
 import { notifyError, notifySuccess } from "../components/toasts/Toast";
 import { useState } from "react";
-import ButtonLoader from "../components/ButtonLoader";
+import ButtonLoader from "../components/ui/ButtonLoader";
 
 export default function ResetPw() {
   const { t } = useTranslation();

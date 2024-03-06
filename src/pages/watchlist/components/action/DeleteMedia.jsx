@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { instanceAPI } from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 import PropTypes from "prop-types";
 import { useState } from "react";
 

@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import ThemeContext from "../contexts/ThemeContext";
-import LightSvg from "./svg/theme/LightSvg";
-import DarkSvg from "./svg/theme/DarkSvg";
-import SystemSvg from "./svg/theme/SystemSvg";
+import ThemeContext from "../../contexts/ThemeContext";
+import LightSvg from "../svg/theme/LightSvg";
+import DarkSvg from "../svg/theme/DarkSvg";
+import SystemSvg from "../svg/theme/SystemSvg";
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);

@@ -3,10 +3,10 @@ import UserContext from "../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
 import { instanceAPI } from "../../services/instances";
 import { notifyError } from "../../components/toasts/Toast";
-import Button from "../../components/Button";
-import Loader from "../../components/Loader";
+import Button from "../../components/ui/Button";
+import Loader from "../../components/ui/Loader";
 import WatchlistCard from "./components/WatchlistCard";
-import Modal from "../../components/Modal";
+import Modal from "../../components/ui/Modal";
 import CreateWatchlist from "./components/action/CreateWatchlist";
 
 export default function Watchlist() {
@@ -68,12 +68,11 @@ export default function Watchlist() {
         </div>
       )}
       {showCreateModal && (
-        <Modal
-          showModal={showCreateModal}
-          setShowModal={setShowCreateModal}
-          setUpdated={setWatchlistUpdated}
-        >
-          <CreateWatchlist />
+        <Modal showModal={showCreateModal} setShowModal={setShowCreateModal}>
+          <CreateWatchlist
+            setUpdated={setWatchlistUpdated}
+            setShowModal={setShowCreateModal}
+          />
         </Modal>
       )}
     </main>

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../../contexts/UserContext";
 import { setScoreColor } from "../../../../services/utils";
 import TrailerSvg from "../../../../components/svg/action/TrailerSvg";
-import Dropdown from "../../../../components/Dropdown";
+import Dropdown from "../../../../components/ui/Dropdown";
 import ContentAction from "./action/ContentAction";
 import PropTypes from "prop-types";
 
@@ -71,19 +71,17 @@ export default function ContentBanner({
       )}
       {user.id && type !== "person" && (
         <div className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-theme-light-bg-primary transition-all hover:bg-theme-light-bg-quad dark:bg-theme-dark-bg-primary dark:hover:bg-theme-dark-bg-quad">
-          <Dropdown
-            dropdown={dropdown}
-            setDropdown={setDropdown}
-            setShowModal={setShowWatchlist}
-            genres={genres}
-            poster={poster}
-            backdrop={backdrop}
-            release={release}
-            runtime={runtime}
-            episodesNumber={episodesNumber}
-            title={title}
-          >
-            <ContentAction />
+          <Dropdown dropdown={dropdown} setDropdown={setDropdown}>
+            <ContentAction
+              setShowModal={setShowWatchlist}
+              genres={genres}
+              poster={poster}
+              backdrop={backdrop}
+              release={release}
+              runtime={runtime}
+              episodesNumber={episodesNumber}
+              title={title}
+            />
           </Dropdown>
         </div>
       )}

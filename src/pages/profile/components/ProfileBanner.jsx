@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import Dropdown from "../../../components/Dropdown";
+import Dropdown from "../../../components/ui/Dropdown";
 import BannerAction from "./action/BannerAction";
 import { useLocation } from "react-router-dom";
 
@@ -30,14 +30,12 @@ export default function ProfileBanner({
       )}
       {location.pathname === "/profile/settings" && (
         <div className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-theme-light-bg-primary transition-all hover:bg-theme-light-bg-quad dark:bg-theme-dark-bg-primary dark:hover:bg-theme-dark-bg-quad">
-          <Dropdown
-            dropdown={dropdown}
-            setDropdown={setDropdown}
-            setShowModalDelete={setShowDeleteBanner}
-            setUpdated={setBannerUpdated}
-            poster={src}
-          >
-            <BannerAction />
+          <Dropdown dropdown={dropdown} setDropdown={setDropdown}>
+            <BannerAction
+              setShowModalDelete={setShowDeleteBanner}
+              setUpdated={setBannerUpdated}
+              poster={src}
+            />
           </Dropdown>
         </div>
       )}

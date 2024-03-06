@@ -1,23 +1,8 @@
-import React, { useRef } from "react";
-import CloseSvg from "./svg/nav/CloseSvg";
+import { useRef } from "react";
+import CloseSvg from "../svg/nav/CloseSvg";
 import PropTypes from "prop-types";
 
-export default function Modal({
-  showModal,
-  setShowModal,
-  setUpdated,
-  src,
-  email,
-  genres,
-  poster,
-  backdrop,
-  release,
-  runtime,
-  episodesNumber,
-  title,
-  dataId,
-  children,
-}) {
+export default function Modal({ showModal, setShowModal, children }) {
   const elRef = useRef(null);
 
   const closeModal = (e) => {
@@ -46,21 +31,7 @@ export default function Modal({
         </button>
       )}
       {/* Modal Content */}
-      {React.cloneElement(children, {
-        elRef: elRef,
-        setShowModal: setShowModal,
-        setUpdated: setUpdated,
-        src: src,
-        email: email,
-        genres: genres,
-        poster: poster,
-        backdrop: backdrop,
-        release: release,
-        runtime: runtime,
-        episodesNumber: episodesNumber,
-        title: title,
-        dataId: dataId,
-      })}
+      {children}
     </div>
   );
 }
@@ -68,16 +39,5 @@ export default function Modal({
 Modal.propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
-  setUpdated: PropTypes.func,
-  src: PropTypes.string,
-  email: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.shape()),
-  poster: PropTypes.string,
-  backdrop: PropTypes.string,
-  release: PropTypes.string,
-  runtime: PropTypes.number,
-  episodesNumber: PropTypes.number,
-  title: PropTypes.string,
-  dataId: PropTypes.string,
   children: PropTypes.element,
 };

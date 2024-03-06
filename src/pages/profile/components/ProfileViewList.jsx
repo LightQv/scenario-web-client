@@ -3,7 +3,7 @@ import DropdownSvg from "../../../components/svg/action/dropdown/DropdownSvg";
 import DropupSvg from "../../../components/svg/action/dropdown/DropupSvg";
 import PropTypes from "prop-types";
 import MediaCard from "../../../components/MediaCard";
-import Selector from "../../../components/Selector";
+import Selector from "../../../components/ui/Selector";
 import { useTranslation } from "react-i18next";
 
 export default function ProfileViewList({ title, data, genre }) {

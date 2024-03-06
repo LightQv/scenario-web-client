@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import { useWindowSize } from "../../../../hooks/useWindowSize";
 import instanceTmdb from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
-import Carousel from "../../../../components/Carousel";
+import Carousel from "../../../../components/ui/Carousel";
 import PropTypes from "prop-types";
-import Modal from "../../../../components/Modal";
+import Modal from "../../../../components/ui/Modal";
 import ScreenshotFull from "./action/ScreenshotFull";
 
 export default function ContentScreenshot({ contentId }) {
@@ -75,8 +75,8 @@ export default function ContentScreenshot({ contentId }) {
         </Carousel>
       )}
       {isShow && selectedScreenshot && (
-        <Modal setShowModal={setIsShow} src={selectedScreenshot}>
-          <ScreenshotFull />
+        <Modal setShowModal={setIsShow}>
+          <ScreenshotFull src={selectedScreenshot} setShowModal={setIsShow} />
         </Modal>
       )}
     </section>

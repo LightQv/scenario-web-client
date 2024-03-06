@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { formatFullDate } from "../../../../services/utils";
 import instanceTmdb from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
-import Carousel from "../../../../components/Carousel";
+import Carousel from "../../../../components/ui/Carousel";
 import PropTypes from "prop-types";
 
 export default function ContentRecommendation({ contentId }) {

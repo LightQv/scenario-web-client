@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import { notifyError } from "../../components/toasts/Toast";
 import PropTypes from "prop-types";
-import SubmitBtn from "../SubmitBtn";
+import SubmitBtn from "../ui/SubmitBtn";
 
 export default function LoginForm({ setShowAuth, setForm, formRef }) {
   const { login } = useContext(UserContext);

@@ -5,7 +5,7 @@ import { instanceAPI } from "../../../../services/instances";
 import { notifyError } from "../../../../components/toasts/Toast";
 import { updateWatchlistSchema } from "../../../../services/validators";
 import PropTypes from "prop-types";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 import { useState } from "react";
 
 export default function UpdateWatchlist({

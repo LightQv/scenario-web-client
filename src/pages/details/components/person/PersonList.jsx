@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import instanceTmdb from "../../../../services/instances";
 import { formatFullDate } from "../../../../services/utils";
-import Carousel from "../../../../components/Carousel";
+import Carousel from "../../../../components/ui/Carousel";
 import { notifyError } from "../../../../components/toasts/Toast";
 
 export default function PersonList() {

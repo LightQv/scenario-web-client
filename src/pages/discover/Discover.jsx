@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import instanceTmdb from "../../services/instances";
 import { notifyError } from "../../components/toasts/Toast";
 import FilterHandler from "./components/FilterHandler";
-import Loader from "../../components/Loader";
+import Loader from "../../components/ui/Loader";
 import ResultCard from "../../components/results/ResultCard";
 import ReactPaginate from "react-paginate";
 import NoResult from "../../components/NoResult";

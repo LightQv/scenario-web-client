@@ -6,8 +6,8 @@ import { notifyError } from "../../components/toasts/Toast";
 import MovieDetails from "./MovieDetails";
 import TvDetails from "./TvDetails";
 import PersonDetails from "./PersonDetails";
-import Loader from "../../components/Loader";
-import Modal from "../../components/Modal";
+import Loader from "../../components/ui/Loader.jsx";
+import Modal from "../../components/ui/Modal.jsx";
 import CreateMedia from "./components/content/action/CreateMedia.jsx";
 
 export default function Detail() {
@@ -52,19 +52,19 @@ export default function Detail() {
       )}
       {!loading && data && type === "person" && <PersonDetails data={data} />}
       {showWatchlist && (
-        <Modal
-          showModal={showWatchlist}
-          setShowModal={setShowWatchlist}
-          //--- Props for Watchlist Action ----//
-          genres={data.genres}
-          poster={data.poster_path}
-          backdrop={data.backdrop_path}
-          release={data.release_date ? data.release_date : data.first_air_date}
-          runtime={data.runtime}
-          episodesNumber={data.number_of_episodes}
-          title={data.title ? data.title : data.name}
-        >
-          <CreateMedia />
+        <Modal showModal={showWatchlist} setShowModal={setShowWatchlist}>
+          <CreateMedia
+            setShowModal={setShowWatchlist}
+            genres={data.genres}
+            poster={data.poster_path}
+            backdrop={data.backdrop_path}
+            release={
+              data.release_date ? data.release_date : data.first_air_date
+            }
+            runtime={data.runtime}
+            episodesNumber={data.number_of_episodes}
+            title={data.title ? data.title : data.name}
+          />
         </Modal>
       )}
     </main>

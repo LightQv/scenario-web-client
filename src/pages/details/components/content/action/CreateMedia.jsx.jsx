@@ -33,7 +33,7 @@ export default function CreateMedia({
   useEffect(() => {
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/watchlist/${user.id}`)
+        .get(`/api/v1/watchlists/${user.id}`)
         .then((res) => {
           setWatchlists(res.data);
         })

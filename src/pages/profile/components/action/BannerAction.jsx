@@ -94,7 +94,7 @@ export default function BannerAction({
   useEffect(() => {
     if (firebaseUpdated && bannerLink) {
       instanceAPI
-        .put(`/api/v1/user/banner/${user.id}`, { bannerLink })
+        .put(`/api/v1/users/banner/${user.id}`, { bannerLink })
         .then(() => {
           setUpdated(true);
         })

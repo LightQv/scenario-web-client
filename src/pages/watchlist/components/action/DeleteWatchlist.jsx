@@ -16,7 +16,7 @@ export default function DeleteWatchlist({ elRef, setShowModal }) {
   const deleteWatchlist = async () => {
     if (id) {
       try {
-        const res = await instanceAPI.delete(`/api/v1/watchlist/${id}`);
+        const res = await instanceAPI.delete(`/api/v1/watchlists/${id}`);
         if (res) {
           notifySuccess(t("toast.success.watchlist.delete"));
           setShowModal(false);

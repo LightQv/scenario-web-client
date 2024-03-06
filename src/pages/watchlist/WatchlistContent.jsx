@@ -36,7 +36,7 @@ export default function WatchlistContent() {
     setLoading(true);
     if (id) {
       instanceAPI
-        .get(`/api/v1/user/watchlist/detail/${id}?genre=`)
+        .get(`/api/v1/watchlists/detail/${id}?genre=`)
         .then((res) => {
           setMedia(res.data);
           setUpdated(false);

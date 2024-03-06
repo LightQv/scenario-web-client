@@ -27,7 +27,7 @@ export default function DeleteBanner({ elRef, setShowModal, setUpdated, src }) {
     const bannerLink = null;
     if (deleted) {
       instanceAPI
-        .put(`/api/v1/user/banner/${user.id}`, { bannerLink })
+        .put(`/api/v1/users/banner/${user.id}`, { bannerLink })
         .then(() => {
           setShowModal(false);
           setUpdated(true);

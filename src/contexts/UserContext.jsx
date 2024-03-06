@@ -23,7 +23,7 @@ export function AuthHandler({ children }) {
   const logout = useCallback(async () => {
     try {
       setLoading(true);
-      const isLogout = await instanceAPI.get("/auth/logout");
+      const isLogout = await instanceAPI.get("/api/v1/auth/logout");
       if (isLogout) {
         setUser({});
         localStorage.removeItem("user");

@@ -5,7 +5,7 @@ import {
   notifyError,
   notifySuccess,
 } from "../../../../components/toasts/Toast";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 import PropTypes from "prop-types";
 
 export default function DeleteWatchlist({ elRef, setShowModal }) {

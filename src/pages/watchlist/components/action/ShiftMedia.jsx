@@ -1,33 +1,20 @@
-import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../../../../../contexts/UserContext";
-import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
-import { instanceAPI } from "../../../../../services/instances";
+import { instanceAPI } from "../../../../services/instances";
 import {
   notifyError,
   notifySuccess,
-} from "../../../../../components/toasts/Toast";
-import { createMediaSchema } from "../../../../../services/validators";
+} from "../../../../components/toasts/Toast";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 import PropTypes from "prop-types";
-import SubmitBtn from "../../../../../components/ui/SubmitBtn";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../../../../contexts/UserContext";
+import { useFormik } from "formik";
+import { createMediaSchema } from "../../../../services/validators";
 
-export default function CreateMedia({
-  setShowModal,
-  elRef,
-  genres,
-  poster,
-  backdrop,
-  release,
-  runtime,
-  episodesNumber,
-  title,
-}) {
-  const { type, id } = useParams();
+export default function ShiftMedia({ elRef, setShowModal, setUpdated, data }) {
   const { user } = useContext(UserContext);
   const { t } = useTranslation();
   const [watchlists, setWatchlists] = useState(null);
-  const [genreIds, setGenreIds] = useState(genres);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,11 +30,7 @@ export default function CreateMedia({
           }
         });
     }
-    //--- Add 0 to Genre Arr which represent "all" ---//
-    const genre = genres.map((el) => el.id);
-    genre.unshift(0);
-    setGenreIds(genre);
-  }, [user.id, t, genres]);
+  }, [user.id, t]);
 
   const formik = useFormik({
     initialValues: {
@@ -60,31 +43,27 @@ export default function CreateMedia({
       const [watchlistSelected] = watchlists.filter(
         (el) => el.id === values.watchlistId
       );
-      try {
-        setLoading(true);
-        const isCreated = await instanceAPI.post(`/api/v1/medias`, {
-          tmdb_id: Number(id),
-          genre_ids: genreIds,
-          poster_path: poster,
-          backdrop_path: backdrop,
-          release_date: release,
-          runtime: runtime | episodesNumber,
-          title: title,
-          media_type: type,
-          watchlistId: values.watchlistId,
-        });
-        if (isCreated) {
-          setShowModal(false);
-          setLoading(false);
-          notifySuccess(
-            t("toast.success.media.add") + ` "${watchlistSelected.title}"`
-          );
+
+      if (data) {
+        try {
+          setLoading(true);
+          const isEdited = await instanceAPI.put(`/api/v1/medias/${data.id}`, {
+            watchlistId: values.watchlistId,
+          });
+          if (isEdited) {
+            setUpdated(true);
+            setShowModal(false);
+            setLoading(false);
+            notifySuccess(
+              t("toast.success.media.add") + ` "${watchlistSelected.title}"`
+            );
+          }
+        } catch (err) {
+          if (err.request?.status !== 403) {
+            notifyError(t("toast.error"));
+          }
+          setLoading(true);
         }
-      } catch (err) {
-        if (err) {
-          notifyError(t("toast.error"));
-        }
-        setLoading(false);
       }
     },
   });
@@ -95,7 +74,7 @@ export default function CreateMedia({
         {t("modal.media.create.title")}
       </h1>
       <form
-        action="create"
+        action="update"
         className="flex h-fit w-full flex-col items-center justify-center"
         ref={elRef}
         onSubmit={formik.handleSubmit}
@@ -157,14 +136,9 @@ export default function CreateMedia({
   );
 }
 
-CreateMedia.propTypes = {
+ShiftMedia.propTypes = {
   setShowModal: PropTypes.func,
+  setUpdated: PropTypes.func,
   elRef: PropTypes.shape(),
-  genres: PropTypes.arrayOf(PropTypes.shape()),
-  poster: PropTypes.string,
-  backdrop: PropTypes.string,
-  release: PropTypes.string,
-  runtime: PropTypes.number,
-  episodesNumber: PropTypes.number,
-  title: PropTypes.string,
+  data: PropTypes.shape(),
 };

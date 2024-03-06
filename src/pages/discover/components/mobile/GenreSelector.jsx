@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import GenresContext from "../../../../contexts/GenresContext";
-import Selector from "../../../../components/Selector";
+import Selector from "../../../../components/ui/Selector";
 import PropTypes from "prop-types";
 
 export default function GenreSelector({ scrollTop, showFilter }) {

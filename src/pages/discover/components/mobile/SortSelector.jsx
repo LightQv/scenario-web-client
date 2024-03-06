@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { sortArr } from "../../../../services/data";
-import Selector from "../../../../components/Selector";
+import Selector from "../../../../components/ui/Selector";
 import PropTypes from "prop-types";
 
 export default function SortSelector({ scrollTop, showFilter }) {

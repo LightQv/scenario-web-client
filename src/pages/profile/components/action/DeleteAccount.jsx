@@ -10,7 +10,7 @@ import { useContext, useState } from "react";
 import UserContext from "../../../../contexts/UserContext";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import SubmitBtn from "../../../../components/SubmitBtn";
+import SubmitBtn from "../../../../components/ui/SubmitBtn";
 
 export default function DeleteAccount({ email, setShowModal, elRef }) {
   const { user, logout } = useContext(UserContext);

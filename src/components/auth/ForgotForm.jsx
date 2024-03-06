@@ -4,7 +4,7 @@ import { forgottenSchema } from "../../services/validators";
 import { instanceAPI } from "../../services/instances";
 import { notifyError, notifySuccess } from "../toasts/Toast";
 import PropTypes from "prop-types";
-import SubmitBtn from "../SubmitBtn";
+import SubmitBtn from "../ui/SubmitBtn";
 import { useState } from "react";
 
 export default function ForgotForm({ setForm, formRef }) {

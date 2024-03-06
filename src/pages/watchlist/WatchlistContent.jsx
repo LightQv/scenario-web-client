@@ -1,21 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import Loader from "../../components/Loader";
+import Loader from "../../components/ui/Loader";
 import { instanceAPI } from "../../services/instances";
 import { useTranslation } from "react-i18next";
 import MediaCard from "../../components/MediaCard";
-import Dropdown from "../../components/Dropdown";
+import Dropdown from "../../components/ui/Dropdown";
 import WatchlistAction from "./components/action/WatchlistAction";
 import { notifyError } from "../../components/toasts/Toast";
-import Modal from "../../components/Modal";
+import Modal from "../../components/ui/Modal";
 import UpdateWatchlist from "./components/action/UpdateWatchlist";
-import ScrollTopBtn from "../../components/ScrollTopBtn";
+import ScrollTopBtn from "../../components/ui/ScrollTopBtn";
 import DeleteWatchlist from "./components/action/DeleteWatchlist";
 import CheckSvg from "../../components/svg/action/CheckSvg";
 import DeleteMedia from "./components/action/DeleteMedia";
 import useFilter from "../../hooks/useFilter";
 import GenreSelector from "./components/GenreSelector";
 import GenresContext from "../../contexts/GenresContext";
+import ShiftMedia from "./components/action/ShiftMedia";
 
 export default function WatchlistContent() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ export default function WatchlistContent() {
   const [media, setMedia] = useState(null);
   const [dropdown, setDropdown] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showEditShift, setShowEditShift] = useState(false);
   const [showEditDelete, setShowEditDelete] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState("");
   const [showRename, setShowRename] = useState(false);
@@ -73,12 +75,13 @@ export default function WatchlistContent() {
                 <Dropdown
                   dropdown={dropdown}
                   setDropdown={setDropdown}
-                  setShowEdit={setShowEdit}
-                  setShowModal={setShowRename}
-                  setShowModalDelete={setShowDelete}
                   color="stroke-theme-light-text-primary dark:stroke-theme-dark-text-primary hover:stroke-theme-light-main hover:stroke-theme-dark-main"
                 >
-                  <WatchlistAction />
+                  <WatchlistAction
+                    setShowEdit={setShowEdit}
+                    setShowModal={setShowRename}
+                    setShowModalDelete={setShowDelete}
+                  />
                 </Dropdown>
               </div>
             </div>
@@ -99,6 +102,7 @@ export default function WatchlistContent() {
                     data={el}
                     key={el.id}
                     showEdit={showEdit}
+                    setShowEditShift={setShowEditShift}
                     setShowEditDelete={setShowEditDelete}
                     setSelectedMedia={setSelectedMedia}
                   />
@@ -113,28 +117,35 @@ export default function WatchlistContent() {
       )}
       <ScrollTopBtn />
       {showEditDelete && (
-        <Modal
-          showModal={showEditDelete}
-          setShowModal={setShowEditDelete}
-          setUpdated={setUpdated}
-          dataId={selectedMedia}
-        >
-          <DeleteMedia />
+        <Modal showModal={showEditDelete} setShowModal={setShowEditDelete}>
+          <DeleteMedia
+            setShowModal={setShowEditDelete}
+            setUpdated={setUpdated}
+            dataId={selectedMedia}
+          />
+        </Modal>
+      )}
+      {showEditShift && (
+        <Modal showModal={showEditDelete} setShowModal={setShowEditDelete}>
+          <ShiftMedia
+            setShowModal={setShowEditShift}
+            setUpdated={setUpdated}
+            data={selectedMedia}
+          />
         </Modal>
       )}
       {showRename && (
-        <Modal
-          showModal={showRename}
-          setShowModal={setShowRename}
-          setUpdated={setUpdated}
-          title={media.title}
-        >
-          <UpdateWatchlist />
+        <Modal showModal={showRename} setShowModal={setShowRename}>
+          <UpdateWatchlist
+            setShowModal={setShowRename}
+            setUpdated={setUpdated}
+            title={media.title}
+          />
         </Modal>
       )}
       {showDelete && (
         <Modal showModal={showDelete} setShowModal={setShowDelete}>
-          <DeleteWatchlist />
+          <DeleteWatchlist setShowModal={setShowDelete} />
         </Modal>
       )}
     </main>

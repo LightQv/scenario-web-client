@@ -5,7 +5,7 @@ import UserContext from "../../../contexts/UserContext";
 import { instanceAPI } from "../../../services/instances";
 import { registerSchema } from "../../../services/validators";
 import { notifyError, notifySuccess } from "../../../components/toasts/Toast";
-import Button from "../../../components/Button";
+import Button from "../../../components/ui/Button";
 
 export default function ProfileUpdate() {
   const { user, logout } = useContext(UserContext);

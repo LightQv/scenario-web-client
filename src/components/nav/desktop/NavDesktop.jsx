@@ -6,7 +6,7 @@ import UserContext from "../../../contexts/UserContext";
 import ThemeContext from "../../../contexts/ThemeContext";
 import DesktopDropdown from "./DesktopDropdown";
 import LanguageDropdown from "./LanguageDropdown";
-import ThemeSwitch from "../../ThemeSwitch";
+import ThemeSwitch from "../../ui/ThemeSwitch";
 import logoLight from "../../../assets/logo/SCENARIO_b.svg";
 import logoDark from "../../../assets/logo/SCENARIO_w.svg";
 import SearchSvg from "../../svg/nav/SearchSvg";
@@ -15,8 +15,8 @@ import DiscoverSvg from "../../svg/nav/DiscoverSvg";
 import WatchlistSvg from "../../svg/nav/WatchlistSvg";
 import ProfileSvg from "../../svg/nav/ProfileSvg";
 import PropTypes from "prop-types";
-import Button from "../../Button";
-import ButtonLoader from "../../ButtonLoader";
+import Button from "../../ui/Button";
+import ButtonLoader from "../../ui/ButtonLoader";
 
 export default function NavDesktop({ setShowSearch, setShowAuth }) {
   const location = useLocation();

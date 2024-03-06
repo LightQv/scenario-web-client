@@ -5,7 +5,7 @@ import ThemeContext from "../../../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { loggedData, navData } from "../../../services/data";
 import MobileDropdown from "./MobileDropdown";
-import ThemeSwitch from "../../ThemeSwitch";
+import ThemeSwitch from "../../ui/ThemeSwitch";
 import LanguageSwitch from "./LanguageSwitch";
 import logoLight from "../../../assets/logo/SCENARIO_b.svg";
 import logoDark from "../../../assets/logo/SCENARIO_w.svg";
@@ -17,7 +17,7 @@ import ProfileSvg from "../../svg/nav/ProfileSvg";
 import CloseSvg from "../../svg/nav/CloseSvg";
 import DiscoverSvg from "../../svg/nav/DiscoverSvg";
 import PropTypes from "prop-types";
-import Button from "../../Button";
+import Button from "../../ui/Button";
 
 export default function NavMobile({
   setShowSearch,

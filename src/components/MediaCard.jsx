@@ -5,10 +5,12 @@ import PropTypes from "prop-types";
 import { useView } from "../hooks/useView";
 import ViewSvg from "./svg/action/ViewSvg";
 import DeleteSvg from "./svg/action/DeleteSvg";
+import ShiftSvg from "./svg/action/ShiftSvg";
 
 export default function MediaCard({
   data,
   showEdit,
+  setShowEditShift,
   setShowEditDelete,
   setSelectedMedia,
 }) {
@@ -16,9 +18,13 @@ export default function MediaCard({
   const { viewed } = useView(data.tmdb_id, data.media_type);
   const { t } = useTranslation();
 
-  const handleMediaSelect = () => {
+  const handleMediaDelete = () => {
     setSelectedMedia(data.id);
     setShowEditDelete(true);
+  };
+  const handleMediaShift = () => {
+    setSelectedMedia(data);
+    setShowEditShift(true);
   };
 
   return (
@@ -35,12 +41,20 @@ export default function MediaCard({
       >
         <div className="flex h-full w-full items-center justify-start gap-4 pr-2 transition-all">
           {showEdit && (
-            <button
-              className="text-theme-light-secondary dark:text-theme-dark-secondary"
-              onClick={() => handleMediaSelect()}
-            >
-              <DeleteSvg />
-            </button>
+            <>
+              <button
+                className="text-theme-light-secondary dark:text-theme-dark-secondary"
+                onClick={() => handleMediaDelete()}
+              >
+                <DeleteSvg />
+              </button>
+              <button
+                className="text-theme-light-main dark:text-theme-dark-main"
+                onClick={() => handleMediaShift()}
+              >
+                <ShiftSvg />
+              </button>
+            </>
           )}
           <section className="h-full">
             <h1 className="line-clamp-1 font-abri text-base lg:text-lg">
@@ -84,5 +98,6 @@ MediaCard.propTypes = {
   data: PropTypes.shape().isRequired,
   showEdit: PropTypes.bool,
   setShowEditDelete: PropTypes.func,
+  setShowEditShift: PropTypes.func,
   setSelectedMedia: PropTypes.func,
 };

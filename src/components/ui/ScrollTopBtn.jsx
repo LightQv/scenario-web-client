@@ -1,4 +1,4 @@
-import ArrowUpSvg from "./svg/action/ArrowUpSvg";
+import ArrowUpSvg from "../svg/action/ArrowUpSvg";
 
 export default function ScrollTopBtn() {
   return (

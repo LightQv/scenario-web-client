@@ -1,4 +1,4 @@
-import Selector from "../../../components/Selector";
+import Selector from "../../../components/ui/Selector";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";

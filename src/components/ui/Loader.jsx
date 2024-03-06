@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ThemeContext from "../contexts/ThemeContext";
+import ThemeContext from "../../contexts/ThemeContext";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function Loader() {

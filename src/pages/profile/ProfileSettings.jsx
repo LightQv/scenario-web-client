@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "../../components/Button";
-import Modal from "../../components/Modal";
+import Button from "../../components/ui/Button";
+import Modal from "../../components/ui/Modal";
 import DeleteAccount from "./components/action/DeleteAccount";
 import UserContext from "../../contexts/UserContext";
 import { notifyError } from "../../components/toasts/Toast";
 import { instanceAPI } from "../../services/instances";
 import ProfileBanner from "./components/ProfileBanner";
-import Loader from "../../components/Loader";
+import Loader from "../../components/ui/Loader";
 import DeleteBanner from "./components/action/DeleteBanner";
 import ProfileUpdate from "./components/ProfileUpdate";
 
@@ -80,22 +80,23 @@ export default function ProfileSettings() {
         </div>
       )}
       {showDeleteBanner && (
-        <Modal
-          showModal={showDeleteBanner}
-          setShowModal={setShowDeleteBanner}
-          setUpdated={setBannerUpdated}
-          src={userData.profileBanner}
-        >
-          <DeleteBanner />
+        <Modal showModal={showDeleteBanner} setShowModal={setShowDeleteBanner}>
+          <DeleteBanner
+            setShowModal={setShowDeleteBanner}
+            setUpdated={setBannerUpdated}
+            src={userData.profileBanner}
+          />
         </Modal>
       )}
       {showDeleteAccount && (
         <Modal
-          email={userData.email}
           showModal={showDeleteAccount}
           setShowModal={setShowDeleteAccount}
         >
-          <DeleteAccount />
+          <DeleteAccount
+            setShowModal={setShowDeleteAccount}
+            email={userData.email}
+          />
         </Modal>
       )}
     </main>

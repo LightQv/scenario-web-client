@@ -8,8 +8,8 @@ import ProfileBanner from "./components/ProfileBanner";
 import ProfileHeader from "./components/ProfileHeader";
 import ProfileViewList from "./components/ProfileViewList";
 import ProfileStat from "./components/ProfileStat";
-import Loader from "../../components/Loader";
-import ScrollTopBtn from "../../components/ScrollTopBtn";
+import Loader from "../../components/ui/Loader";
+import ScrollTopBtn from "../../components/ui/ScrollTopBtn";
 import GenresContext from "../../contexts/GenresContext";
 
 export default function Profile() {

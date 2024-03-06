@@ -25,7 +25,7 @@ export default function ProfileUpdate() {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const isUpdated = await instanceAPI.put(`/api/v1/user/${user.id}`, {
+        const isUpdated = await instanceAPI.put(`/api/v1/users/${user.id}`, {
           username: values.username,
           email: values.email,
           password: values.password,

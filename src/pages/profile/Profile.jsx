@@ -25,7 +25,7 @@ export default function Profile() {
     if (user.id) {
       setLoading(true);
       instanceAPI
-        .get(`/api/v1/user/banner/${user.id}`)
+        .get(`/api/v1/users/banner/${user.id}`)
         .then((res) => {
           setBanner(res.data);
           setLoading(false);

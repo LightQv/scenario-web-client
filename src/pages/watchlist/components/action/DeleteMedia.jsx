@@ -18,7 +18,7 @@ export default function DeleteMedia({
     if (dataId) {
       try {
         setLoading(true);
-        const res = await instanceAPI.delete(`/api/v1/media/${dataId}`);
+        const res = await instanceAPI.delete(`/api/v1/medias/${dataId}`);
         if (res) {
           setUpdated(true);
           setShowModal(false);

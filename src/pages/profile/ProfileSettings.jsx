@@ -24,7 +24,7 @@ export default function ProfileSettings() {
     if (user.id) {
       setLoading(true);
       instanceAPI
-        .get(`/api/v1/user/${user.id}`)
+        .get(`/api/v1/users/${user.id}`)
         .then((res) => {
           setUserData(res.data);
           setBannerUpdated(false);

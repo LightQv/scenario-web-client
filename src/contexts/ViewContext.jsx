@@ -45,7 +45,7 @@ export function UserViews({ children }) {
   useEffect(() => {
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/movie/${user.id}?genre=`)
+        .get(`/api/v1/views/movie/${user.id}?genre=`)
         .then(({ data }) => {
           setMovieViews(data);
           setMovieCount(data.length);
@@ -56,7 +56,7 @@ export function UserViews({ children }) {
     }
     if (user.id) {
       instanceAPI
-        .get(`/api/v1/user/view/tv/${user.id}?genre=`)
+        .get(`/api/v1/views/tv/${user.id}?genre=`)
         .then(({ data }) => {
           setTvViews(data);
           setTvCount(data.length);

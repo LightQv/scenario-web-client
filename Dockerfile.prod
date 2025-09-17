@@ -1,0 +1,51 @@
+FROM node:20-slim AS build
+
+# Optimisation Node
+ENV NODE_ENV=production
+
+# Crée l'utilisateur non-root et le répertoire d'app
+RUN useradd -ms /bin/sh user -u 1000 \
+    && mkdir -p /scenario \
+    && chown -R user:user /scenario
+
+WORKDIR /scenario
+
+# Installe les deps à partir des manifests
+# (prend en charge l'absence éventuelle de package-lock.json)
+COPY package*.json ./
+RUN --mount=type=cache,target=/root/.npm bash -lc '\
+  if [ -f package-lock.json ]; then npm ci; else npm install; fi \
+'
+
+# Copie le code et build Vite -> /scenario/dist
+COPY . .
+RUN npm run build
+
+
+FROM node:20-slim AS runtime
+
+ENV NODE_ENV=production \
+    HOST=0.0.0.0 \
+    PORT=4173
+
+# Crée l'utilisateur non-root et le répertoire d'app
+RUN useradd -ms /bin/sh user -u 1000 \
+    && mkdir -p /scenario \
+    && chown -R user:user /scenario
+
+WORKDIR /scenario
+
+# Installe uniquement vite globalement pour servir le dossier dist
+RUN npm i -g vite@5.0.8
+
+# Copie les assets construits depuis l'étape de build
+COPY --from=build /scenario/dist /scenario/dist
+
+# Bascule en non-root
+USER user
+
+# Expose le port de vite preview
+EXPOSE 5173
+
+# Sert le build sans Nginx
+CMD ["vite", "preview", "--host", "0.0.0.0", "--port", "5173", "--strictPort"]

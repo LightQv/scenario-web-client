@@ -7,10 +7,12 @@ services:
     restart: always
     ports:
       - "3001:5173"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
     networks:
       - scenario-network
-    #   scenario-api:
-    #     condition: service_started
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:5173/ > /dev/null || exit 1"]
       interval: 30s

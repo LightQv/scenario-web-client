@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-api-docker-image:
+  build-web-client-docker-image:
     runs-on: ubuntu-latest
 
     steps:

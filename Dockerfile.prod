@@ -24,25 +24,6 @@ COPY . /scenario/
 # Build the application
 RUN npm run build
 
-# Production stage with nginx
-FROM nginx:alpine
-
-# Install system dependencies for security updates
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache curl && \
-    rm -rf /var/cache/apk/*
-
-# Create non-root user for nginx
-RUN addgroup -g 1000 -S user && \
-    adduser -S user -u 1000 -G user
-
-# Copy built application from builder stage
-COPY --from=builder --chown=user:user /scenario/dist /usr/share/nginx/html
-
-# Switch to non-root user
-USER user
-
 # Expose the application port
 EXPOSE 5173
 
@@ -50,5 +31,5 @@ EXPOSE 5173
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:5173/ || exit 1
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start app
+CMD ["npm", "run", "start"]

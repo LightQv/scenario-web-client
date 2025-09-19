@@ -1,35 +1,57 @@
 FROM node:22-alpine AS builder
 
-# Environment variables for Node.js optimization
+# Set environment to production
 ENV NODE_ENV=production
 
-# Create non-root user for security
+# Create app directory and a non-root user for security
 RUN addgroup -g 1001 -S user && \
     adduser -S -u 1001 -G user user && \
-    mkdir -p /scenario && \
-    chown -R user:user /scenario
+    mkdir -p /app && \
+    chown -R user:user /app
 
 # Set working directory
-WORKDIR /scenario
+WORKDIR /app
 
-# Copy package configuration files
-COPY ./package*.json /scenario/
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (including devDependencies)
+# Dev dependencies like 'vite' are required for the build
+RUN npm ci
 
-# Copy application code
-COPY . /scenario/
+# Copy the rest of the application code
+COPY . .
 
 # Build the application
 RUN npm run build
 
-# Expose the application port
+# Change ownership to non-root user
+RUN chown -R user:user /app
+
+# Switch to non-root user
+USER user
+
+FROM node:22-alpine AS runner
+
+# Set environment to production
+ENV NODE_ENV=production
+
+# Create app directory
+WORKDIR /app
+
+# Copy only production dependencies
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy the built app from the builder stage
+COPY --from=builder /app/dist ./dist
+
+# Expose the port your app will run on
 EXPOSE 5173
 
-# Health check
+# Optional: Healthcheck to verify container is up
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:5173/ || exit 1
 
-# Start app
+# Start the application
 CMD ["npm", "run", "start"]

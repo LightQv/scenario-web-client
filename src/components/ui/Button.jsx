@@ -29,7 +29,7 @@ export default function Button({
 Button.propTypes = {
   onSubmit: PropTypes.func,
   onClick: PropTypes.func,
-  disabled: PropTypes.shape(),
+  disabled: PropTypes.bool,
   disableColor: PropTypes.string,
   activeColor: PropTypes.string,
   isLoading: PropTypes.bool,

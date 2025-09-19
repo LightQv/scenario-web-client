@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 export default function WatchlistCard({ el }) {
   const { t } = useTranslation();
+  
   return (
     <Link
       to={`/watchlist/${el.id}`}
@@ -16,8 +17,8 @@ export default function WatchlistCard({ el }) {
             {el.title}
           </h1>
           <h2 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
-            {el._count.medias}{" "}
-            {el._count.medias > 1
+            {el.medias_count}{" "}
+            {el.medias_count > 1
               ? t("page.watchlist.count.plurial")
               : t("page.watchlist.count.singular")}
           </h2>

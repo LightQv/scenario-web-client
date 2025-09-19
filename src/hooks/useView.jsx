@@ -13,18 +13,18 @@ export function useView(tmdb_id, parameter) {
       let isViewed = [];
       if (parameter === "movie") {
         isViewed = movieViews?.some(
-          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewer_id === user.id
         );
       }
       if (parameter === "tv") {
         isViewed = tvViews?.some(
-          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewer_id === user.id
         );
       }
       if (parameter === null) {
         let totalViews = movieViews.concat(tvViews);
         isViewed = totalViews?.some(
-          (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+          (el) => el.tmdb_id === Number(tmdb_id) && el.viewer_id === user.id
         );
       }
       setViewed(isViewed);
@@ -34,10 +34,10 @@ export function useView(tmdb_id, parameter) {
       const viewObj =
         parameter === "movie"
           ? movieViews?.find(
-              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewer_id === user.id
             )
           : tvViews?.find(
-              (el) => el.tmdb_id === Number(tmdb_id) && el.viewerId === user.id
+              (el) => el.tmdb_id === Number(tmdb_id) && el.viewer_id === user.id
             );
       setViewObj(viewObj);
     }

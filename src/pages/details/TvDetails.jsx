@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import ContentBanner from "./components/content/ContentBanner";
 import ContentHeader from "./components/content/ContentHeader";
 import ContentList from "./components/content/ContentList";
-import ContentProvider from "./components/content/ContentProvider";
 import ContentScreenshot from "./components/content/ContentScreenshot";
 import ContentRecommendation from "./components/content/ContentRecommendation";
 import PropTypes from "prop-types";
@@ -44,7 +43,6 @@ export default function TvDetails({ data, setShowWatchlist }) {
         data={data.seasons}
       />
       <ContentScreenshot contentId={data.id} />
-      <ContentProvider contentId={data.id} />
       <ContentRecommendation contentId={data.id} />
     </div>
   );

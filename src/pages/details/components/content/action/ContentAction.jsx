@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 export default function ContentAction({
   setShowModal,
-  genres,
+  genres = [],
   poster,
   backdrop,
   release,
@@ -27,9 +27,14 @@ export default function ContentAction({
 
   //--- Add 0 to Genre Arr which represent "all" ---//
   useEffect(() => {
-    const genre = genres.map((el) => el.id);
-    genre.unshift(0);
-    setGenreIds(genre);
+    if (genres && Array.isArray(genres) && genres.length > 0) {
+      const genreArray = genres.map((genre) => genre.id);
+      genreArray.unshift(0);
+      setGenreIds(genreArray);
+    } else {
+      // Si genres est vide ou undefined, utiliser seulement [0]
+      setGenreIds([0]);
+    }
   }, [genres]);
 
   //--- View Logic ---//
@@ -51,7 +56,7 @@ export default function ContentAction({
           runtime: runtime | episodesNumber,
           title: title,
           media_type: type,
-          viewerId: user.id,
+          viewer_id: user.id,
         })
         .then(() => setSendView(true))
         .catch(() => notifyError(t("toast.error")));

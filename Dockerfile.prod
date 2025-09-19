@@ -40,9 +40,6 @@ RUN addgroup -g 1000 -S user && \
 # Copy built application from builder stage
 COPY --from=builder --chown=user:user /scenario/dist /usr/share/nginx/html
 
-# Copy nginx configuration
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
 # Switch to non-root user
 USER user
 

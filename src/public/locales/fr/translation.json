@@ -106,20 +106,6 @@
     }
   },
 
-  "chart": {
-    "percentage": {
-      "title": "Pourcentage de vue par type de média",
-      "label": "Type de média",
-      "movie": "Films",
-      "tv": "Séries TV"
-    },
-    "decade": {
-      "title": "Nombre de vue par décennie et par type de média",
-      "movie": "Films",
-      "tv": "Séries TV"
-    }
-  },
-
   "dropdown": {
     "banner": {
       "modify": "Modifier votre bannière",
@@ -225,11 +211,6 @@
           }
         },
         "screenshots": "Captures d'écran",
-        "providers": {
-          "title": "Où est-ce que je peux le regarder ?",
-          "subtitle1": "Streaming",
-          "subtitle2": "Acheter"
-        },
         "recommandations": "Recommandations"
       }
     },

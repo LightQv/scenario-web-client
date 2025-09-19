@@ -4,8 +4,8 @@ FROM node:22-alpine AS builder
 ENV NODE_ENV=production
 
 # Create non-root user for security
-RUN addgroup -g 1000 -S user && \
-    adduser -S user -u 1000 -G user && \
+RUN addgroup -g 1001 -S user && \
+    adduser -S -u 1001 -G user user && \
     mkdir -p /scenario && \
     chown -R user:user /scenario
 

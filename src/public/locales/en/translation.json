@@ -106,20 +106,6 @@
     }
   },
 
-  "chart": {
-    "percentage": {
-      "title": "View percentage by media type",
-      "label": "Media type",
-      "movie": "Movies",
-      "tv": "Tv Shows"
-    },
-    "decade": {
-      "title": "View count by decade and by type",
-      "movie": "Movies",
-      "tv": "Tv Shows"
-    }
-  },
-
   "dropdown": {
     "banner": {
       "modify": "Modify your banner",
@@ -225,11 +211,6 @@
           }
         },
         "screenshots": "Screenshots",
-        "providers": {
-          "title": "Where do I watch it ?",
-          "subtitle1": "Streaming",
-          "subtitle2": "Buy"
-        },
         "recommandations": "Recommandations"
       }
     },

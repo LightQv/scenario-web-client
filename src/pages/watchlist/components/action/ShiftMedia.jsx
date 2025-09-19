@@ -48,7 +48,7 @@ export default function ShiftMedia({ elRef, setShowModal, setUpdated, data }) {
         try {
           setLoading(true);
           const isEdited = await instanceAPI.put(`/api/v1/medias/${data.id}`, {
-            watchlistId: values.watchlistId,
+            watchlist_id: values.watchlistId,
           });
           if (isEdited) {
             setUpdated(true);

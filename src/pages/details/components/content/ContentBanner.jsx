@@ -10,10 +10,10 @@ import PropTypes from "prop-types";
 export default function ContentBanner({
   src,
   alt,
-  score,
+  score = 0,
   videos,
   setShowWatchlist,
-  genres,
+  genres = [],
   poster,
   backdrop,
   release,
@@ -90,9 +90,9 @@ export default function ContentBanner({
 }
 
 ContentBanner.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   alt: PropTypes.string,
-  score: PropTypes.number.isRequired,
+  score: PropTypes.number,
   videos: PropTypes.arrayOf(PropTypes.shape()),
   setShowWatchlist: PropTypes.func,
   genres: PropTypes.arrayOf(PropTypes.shape()),

@@ -1,0 +1,23 @@
+name: "scenario-web-client-dev"
+
+services:
+  scenario-client:
+    container_name: scenario-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/home/scenario/app
+      - /home/scenario/app/node_modules
+    networks:
+      - scenario-network
+
+networks:
+  scenario-network:
+    driver: bridge

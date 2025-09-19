@@ -71,7 +71,7 @@ export default function CreateMedia({
           runtime: runtime | episodesNumber,
           title: title,
           media_type: type,
-          watchlistId: values.watchlistId,
+          watchlist_id: values.watchlistId,
         });
         if (isCreated) {
           setShowModal(false);

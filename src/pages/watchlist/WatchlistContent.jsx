@@ -37,8 +37,9 @@ export default function WatchlistContent() {
     const currentGenre = searchParams.get("genre") || "";
     setLoading(true);
     if (id) {
+      const genreQuery = currentGenre ? `?genre=${currentGenre}` : ''
       instanceAPI
-        .get(`/api/v1/watchlists/detail/${id}?genre=${currentGenre}`)
+        .get(`/api/v1/watchlists/detail/${id}${genreQuery}`)
         .then((res) => {
           setMedia(res.data);
           setUpdated(false);
@@ -51,7 +52,7 @@ export default function WatchlistContent() {
         });
     }
   }, [id, t, updated, searchParams]);
-
+  
   return (
     <main className="relative flex min-h-screen justify-between bg-theme-light-bg-primary pt-12 font-fira 2xl:mx-auto 3xl:w-1/2 dark:bg-theme-dark-bg-primary dark:text-theme-dark-text-primary">
       {loading && (
@@ -86,8 +87,8 @@ export default function WatchlistContent() {
               </div>
             </div>
             <p className="mb-2 text-justify indent-4 text-xs leading-5 lg:mb-6 lg:text-sm dark:text-theme-dark-text-secondary">
-              {media._count.medias}{" "}
-              {media._count.medias > 1
+              {media.medias_count}{" "}
+              {media.medias_count > 1
                 ? t("page.watchlist.count.plurial")
                 : t("page.watchlist.count.singular")}
             </p>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import history from "./history";
 
-const { VITE_TMDB_API_TOKEN, VITE_BACKEND_URL } = import.meta.env;
+const { VITE_TMDB_API_TOKEN, VITE_API_URL } = import.meta.env;
 
 const instanceTmdb = axios.create({
   baseURL: "https://api.themoviedb.org/3",
@@ -11,7 +11,7 @@ const instanceTmdb = axios.create({
 });
 
 export const instanceAPI = axios.create({
-  baseURL: VITE_BACKEND_URL,
+  baseURL: VITE_API_URL,
   withCredentials: true,
 });
 

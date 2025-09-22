@@ -6,7 +6,7 @@ services:
     container_name: scenario-web-client
     restart: always
     ports:
-      - "3001:5173"
+      - "3001:80"
     env_file:
       - .env
     environment:

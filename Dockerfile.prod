@@ -28,27 +28,16 @@ RUN chown -R user:user /app
 # Switch to non-root user
 USER user
 
-FROM node:22-alpine AS runner
+FROM nginx:stable-alpine AS runner
 
-# Set environment to production
-ENV NODE_ENV=production
-
-# Create app directory
-WORKDIR /app
-
-# Copy only production dependencies
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy the built app from the builder stage
-COPY --from=builder /app/dist ./dist
+# Copy app build into nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose the port your app will run on
-EXPOSE 5173
+EXPOSE 80
 
-# Optional: Healthcheck to verify container is up
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5173/ || exit 1
+# Remplacer la conf nginx par défaut (optionnel si tu veux personnaliser)
+RUN sed -i 's/80;/3001;/g' /etc/nginx/conf.d/default.conf
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,20 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
-import storage from "../../../../services/firebase";
-import { v4 as uuid } from "uuid";
 import UserContext from "../../../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
 import { instanceAPI } from "../../../../services/instances";
-import {
-  notifyError,
-  notifyPromise,
-} from "../../../../components/toasts/Toast";
+import { notifyPromise } from "../../../../components/toasts/Toast";
 import PropTypes from "prop-types";
 
 export default function BannerAction({
@@ -25,8 +14,6 @@ export default function BannerAction({
   const { user } = useContext(UserContext);
   const { t } = useTranslation();
   const [newBanner, setNewBanner] = useState(null);
-  const [bannerLink, setBannerLink] = useState(null);
-  const [firebaseUpdated, setFirebaseUpdated] = useState(false);
 
   //--- Put File in newBanner state using dropzone ---//
   const handleDrop = useCallback((acceptedFiles) => {
@@ -37,70 +24,65 @@ export default function BannerAction({
     accept: {
       "image/jpeg": [],
       "image/png": [],
+      "image/webp": [],
     },
     maxFiles: 1,
     onDrop: handleDrop,
   });
 
-  //--- Firebase Upload Logic ---//
+  //--- Local API Upload Logic ---//
   useEffect(() => {
     const handleBannerUpload = async () => {
-      // Won't accept Banner if over 5Mb
       if (newBanner && newBanner.size > 5000000) {
-        notifyError(t("toast.errorSize"));
         setNewBanner(null);
-        return;
+        throw new Error("toast.errorFileSize");
       }
-      // Won't accept Banner if null
       if (newBanner === null) return;
 
-      // Delete old Banner on Firebase if exist
-      if (poster && newBanner) {
-        const oldBannerRef = ref(storage, poster);
-        const isOldBanner = await getDownloadURL(oldBannerRef);
-        if (isOldBanner) {
-          deleteObject(oldBannerRef);
-        }
-      }
-
-      // Upload new Banner on Firebase and get it's URL
       try {
-        // Format new Banner name with uuid & username
-        const bannerRef = ref(
-          storage,
-          `profile_banner/${uuid()}_${user.username.toLowerCase()}`
+        const formData = new FormData();
+        formData.append("file", newBanner);
+
+        const response = await instanceAPI.post(
+          `/api/v1/uploads/banner/${user.id}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         );
-        const uploadBanner = await uploadBytes(bannerRef, newBanner);
-        if (uploadBanner) {
-          const link = await getDownloadURL(uploadBanner.ref);
-          if (link) {
-            setBannerLink(link);
-            setFirebaseUpdated(true);
-            setNewBanner(null);
-          } else throw new Error();
-        } else throw new Error();
-      } catch (err) {
-        notifyError(t("toast.errorFirebase"));
+
+        if (response.status === 201) {
+          setUpdated(true);
+          setNewBanner(null);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        } else {
+          throw new Error("toast.error");
+        }
+      } catch (error) {
+        setNewBanner(null);
+        if (error.response?.status === 400) {
+          throw new Error(error.response.data.detail || t("toast.error"));
+        } else if (error.response?.status === 413) {
+          throw new Error("toast.errorFileSize");
+        } else if (error.response?.status === 415) {
+          throw new Error("toast.errorFileFormat");
+        } else {
+          throw new Error("toast.error");
+        }
       }
     };
 
     // Call the entire script
     if (newBanner) {
-      notifyPromise(handleBannerUpload());
+      notifyPromise(handleBannerUpload(), {
+        loading: t("toast.loading.bannerUpload"),
+        success: t("toast.success.bannerUpload"),
+        error: (error) => t(error || "toast.error"),
+      });
     }
-  }, [newBanner, poster, user.username, t]);
-
-  // Finally put the Banner's URL on the DB
-  useEffect(() => {
-    if (firebaseUpdated && bannerLink) {
-      instanceAPI
-        .put(`/api/v1/users/banner/${user.id}`, { bannerLink })
-        .then(() => {
-          setUpdated(true);
-        })
-        .catch(() => notifyError(t("toast.error")));
-    }
-  }, [firebaseUpdated, bannerLink, user.id, t, setUpdated]);
+  }, [newBanner, user.id, t, setUpdated]);
 
   return (
     <>

@@ -17,6 +17,7 @@ export default function ProfileBanner({
     <section className="relative h-fit w-full">
       {src ? (
         <img
+          key={src}
           src={src}
           alt="profile_banner"
           className="h-56 w-full border-[1px] border-theme-light-bg-third object-cover lg:h-[25rem] dark:border-theme-dark-bg-third"

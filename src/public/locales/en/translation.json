@@ -273,7 +273,11 @@
     "login": "Email or password invalid",
     "register": "Username or Email already taken",
     "expired": "Session expired",
+    "loading": {
+      "bannerUpload": "Upload..."
+    },
     "success": {
+      "bannerUpload": "Banner upload successfully",
       "forgot": "Email sent",
       "reset": "Password modified",
       "media": {
@@ -287,9 +291,10 @@
         "delete": "Watchlist deleted"
       }
     },
+    "loadingUpload": "",
     "error": "Oops, something went wrong",
     "errorTMDB": "Oops, something went wrong with TMDB",
-    "errorFirebase": "Oops, error from Firebase",
-    "errorSize": "File too heavy, must be lighter than 1Mb"
+    "errorFileFormat": "File invalid format, must be .jpg, .jpeg, .png or .webp",
+    "errorFileSize": "File too heavy, must be lighter than 5Mb"
   }
 }

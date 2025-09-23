@@ -100,4 +100,4 @@ Then serve the static files with **nginx** or any other static file server.
 
 ## 📜 License
 
-This project is released under the **MIT License**.
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.

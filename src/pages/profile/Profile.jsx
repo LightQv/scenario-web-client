@@ -16,23 +16,32 @@ export default function Profile() {
   const { movieGenres, tvGenres } = useContext(GenresContext);
   const { movieViews, movieCount, movieRuntime, tvViews, tvCount, tvRuntime } =
     useContext(ViewContext);
-  const [banner, setBanner] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
     if (user.id) {
       setLoading(true);
+
       instanceAPI
-        .get(`/api/v1/users/banner/${user.id}`)
+        .get(`/api/v1/users/${user.id}`)
         .then((res) => {
-          setBanner(res.data);
+          const { profile_banner, ...others } = res.data;
+          setUserData({
+            ...others,
+            profileBanner: profile_banner
+              ? `${import.meta.env.VITE_API_URL}${profile_banner.slice(1)}`
+              : null,
+          });
           setLoading(false);
         })
         .catch((err) => {
           if (err.request?.status !== 403) {
             notifyError(t("toast.error"));
           }
+          setUserData({});
+          setLoading(false);
         });
     }
   }, [user.id, t]);
@@ -44,9 +53,9 @@ export default function Profile() {
           <Loader />
         </div>
       )}
-      {!loading && banner && user && (
+      {!loading && userData && user && (
         <div className="w-full lg:mx-auto lg:w-3/5 lg:pt-6">
-          <ProfileBanner src={banner.profileBanner} />
+          <ProfileBanner src={userData.profileBanner} />
           <ProfileHeader
             username={user.username}
             movieViewsCount={movieCount}

@@ -273,7 +273,11 @@
     "login": "Email ou mot de passe invalide",
     "register": "Pseudo ou Email déjà prit",
     "expired": "Session expirée",
+    "loading": {
+      "bannerUpload": "Téléchargement en cours..."
+    },
     "success": {
+      "bannerUpload": "Bannière téléchargée",
       "forgot": "Email envoyé",
       "reset": "Mot de passe modifié",
       "media": {
@@ -289,7 +293,7 @@
     },
     "error": "Oops, quelque chose a échoué",
     "errorTMDB": "Oops, quelque chose a échoué avec TMDB",
-    "errorFirebase": "Oops, erreur de Firebase",
-    "errorSize": "Fichier trop lourd, il doit être plus léger que 1Mb"
+    "errorFileFormat": "Format du fichier invalide, doit être parmi .jpg, .jpeg, .png or .webp",
+    "errorFileSize": "Fichier trop lourd, il doit être plus léger que 5Mb"
   }
 }

@@ -6,21 +6,29 @@ export const notifySuccess = (message) => {
 };
 
 // Toast Promise
-export const notifyPromise = (promise) => {
+export const notifyPromise = (promise, messages) => {
   toast.promise(
     promise,
     {
-      loading: "Uploading...",
-      success: <p className="">Done!</p>,
-      error: <p>Oops, something went wrong.</p>,
+      loading: () => <p>{messages.loading || "Loading..."}</p>,
+      success: (data) => (
+        <p>
+          {typeof messages.success === "function"
+            ? messages.success(data)
+            : messages.success || "Success!"}
+        </p>
+      ),
+      error: (err) => (
+        <p>
+          {typeof messages.error === "function"
+            ? messages.error(err.message)
+            : messages.error || "Something went wrong"}
+        </p>
+      ),
     },
     {
       className:
-        "bg-theme-light-bg-primary text-theme-light-text-primary dark:bg-theme-dark-bg-quad dark:text-theme-dark-text-primary text-sm font-semibold",
-      iconTheme: {
-        primary: "#eab208",
-        secondary: "#FFFFFF",
-      },
+        "bg-theme-light-bg-primary dark:bg-theme-dark-bg-third text-sm font-semibold",
     }
   );
 };

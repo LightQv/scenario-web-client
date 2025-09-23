@@ -23,10 +23,17 @@ export default function ProfileSettings() {
   useEffect(() => {
     if (user.id) {
       setLoading(true);
+
       instanceAPI
         .get(`/api/v1/users/${user.id}`)
         .then((res) => {
-          setUserData(res.data);
+          const { profile_banner, ...others } = res.data;
+          setUserData({
+            ...others,
+            profileBanner: profile_banner
+              ? `${import.meta.env.VITE_API_URL}${profile_banner.slice(1)}`
+              : null,
+          });
           setBannerUpdated(false);
           setLoading(false);
         })
@@ -34,6 +41,8 @@ export default function ProfileSettings() {
           if (err.request?.status !== 403) {
             notifyError(t("toast.error"));
           }
+          setUserData({});
+          setLoading(false);
         });
     }
   }, [user.id, bannerUpdated, t]);

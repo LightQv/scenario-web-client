@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ViewContext from "../../../../../contexts/ViewContext";
+import BookmarkContext from "../../../../../contexts/BookmarkContext";
 import UserContext from "../../../../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
 import { notifyError } from "../../../../../components/toasts/Toast";
 import { instanceAPI } from "../../../../../services/instances";
 import { useView } from "../../../../../hooks/useView";
+import { useBookmark } from "../../../../../hooks/useBookmark";
 import PropTypes from "prop-types";
 
 export default function ContentAction({
@@ -21,7 +23,9 @@ export default function ContentAction({
   const { type, id } = useParams();
   const { user } = useContext(UserContext);
   const { setSendView } = useContext(ViewContext);
+  const { setSendBookmark } = useContext(BookmarkContext);
   const { viewed, viewObj } = useView(id, type);
+  const { bookmarked, bookmarkObj } = useBookmark(id);
   const [genreIds, setGenreIds] = useState(genres);
   const { t } = useTranslation();
 
@@ -63,6 +67,30 @@ export default function ContentAction({
     }
   };
 
+  //--- Bookmark Logic ---//
+  const handleBookmark = () => {
+    if (bookmarked) {
+      instanceAPI
+        .delete(`/api/v1/bookmarks/${bookmarkObj.id}`)
+        .then(() => setSendBookmark(true))
+        .catch(() => notifyError(t("toast.error")));
+    } else {
+      instanceAPI
+        .post(`/api/v1/bookmarks`, {
+          tmdb_id: Number(id),
+          genre_ids: genreIds,
+          poster_path: poster,
+          backdrop_path: backdrop,
+          release_date: release,
+          runtime: runtime || episodesNumber || 0,
+          title: title,
+          media_type: type,
+        })
+        .then(() => setSendBookmark(true))
+        .catch(() => notifyError(t("toast.error")));
+    }
+  };
+
   return (
     <>
       <button
@@ -71,6 +99,17 @@ export default function ContentAction({
         className="h-fit w-full px-4 py-2 text-end text-xs text-theme-light-text-primary hover:bg-theme-light-bg-third dark:text-theme-dark-text-primary dark:hover:bg-theme-dark-bg-third"
       >
         {t("dropdown.media")}
+      </button>
+      <button
+        type="button"
+        onClick={() => handleBookmark()}
+        className={`h-fit w-full border-t-[1px] border-theme-light-bg-third px-4 py-2 text-end text-xs hover:bg-theme-light-bg-third dark:border-theme-dark-bg-third dark:hover:bg-theme-dark-bg-third ${
+          bookmarked
+            ? "text-theme-light-secondary dark:text-theme-dark-secondary"
+            : "text-theme-light-text-primary dark:text-theme-dark-text-primary"
+        }`}
+      >
+        {bookmarked ? t("dropdown.unbookmark") : t("dropdown.bookmark")}
       </button>
       <button
         type="button"

@@ -114,6 +114,8 @@
     "media": "Ajouter à une liste de lecture",
     "view": "Marquer comme \"vu\"",
     "unview": "Retirer des \"vus\"",
+    "bookmark": "Ajouter aux favoris",
+    "unbookmark": "Retirer des favoris",
     "watchlist": {
       "modify": "Modifier la liste de lecture",
       "rename": "Renommer la liste de lecture",
@@ -220,6 +222,9 @@
     "watchlist": {
       "title": "Liste de lecture",
       "subtitle": "Retrouvez ici toutes les listes de lecture que vous avez créé(e).",
+      "system": {
+        "title": "À regarder"
+      },
       "count": {
         "singular": "Élément",
         "plurial": "Éléments"

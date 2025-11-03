@@ -114,6 +114,8 @@
     "media": "Add to a watchlist",
     "view": "Mark as \"watched\"",
     "unview": "Unmark as \"watched\"",
+    "bookmark": "Add to bookmarks",
+    "unbookmark": "Remove from bookmarks",
     "watchlist": {
       "modify": "Modify watchlist",
       "rename": "Rename watchlist",
@@ -220,6 +222,9 @@
     "watchlist": {
       "title": "Your watchlist",
       "subtitle": "Find here every watchlist you've created.",
+      "system": {
+        "title": "To Watch"
+      },
       "count": {
         "singular": "Element",
         "plurial": "Elements"

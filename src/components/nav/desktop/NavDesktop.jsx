@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { navData, loggedData } from "../../../services/data";
 import UserContext from "../../../contexts/UserContext";
 import ThemeContext from "../../../contexts/ThemeContext";
+import BookmarkContext from "../../../contexts/BookmarkContext";
 import DesktopDropdown from "./DesktopDropdown";
 import LanguageDropdown from "./LanguageDropdown";
 import ThemeSwitch from "../../ui/ThemeSwitch";
@@ -23,6 +24,7 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
   const { t } = useTranslation();
   const { darkTheme } = useContext(ThemeContext);
   const { user, logout, loading } = useContext(UserContext);
+  const { bookmarkCount } = useContext(BookmarkContext);
   const [topDropdown, setTopDropdown] = useState(false);
   const [discoverDropdown, setDiscoverDropdown] = useState(false);
 
@@ -90,7 +92,7 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
           {user.id &&
             loggedData &&
             loggedData.map((el) => (
-              <li key={el.id}>
+              <li key={el.id} className="relative">
                 <NavLink
                   to={el.path}
                   className={({ isActive }) => `flex items-center gap-2
@@ -104,7 +106,16 @@ export default function NavDesktop({ setShowSearch, setShowAuth }) {
                   : "decoration-theme-light-text-secondary  dark:decoration-theme-dark-text-primary"
               }`}
                 >
-                  {el.title === t("navigation.link4") && <WatchlistSvg />}
+                  {el.title === t("navigation.link4") && (
+                    <div className="relative">
+                      <WatchlistSvg />
+                      {bookmarkCount > 0 && (
+                        <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                          {bookmarkCount}
+                        </span>
+                      )}
+                    </div>
+                  )}
                   {el.title === t("navigation.link5") && <ProfileSvg />}
                   <p className="uppercase">{el.title}</p>
                 </NavLink>

@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 import UserContext from "../../../../contexts/UserContext";
 import { durationConvert, formatFullDate } from "../../../../services/utils";
 import ViewSvg from "../../../../components/svg/action/ViewSvg";
+import BookmarkSvg from "../../../../components/svg/action/BookmarkSvg";
 import PropTypes from "prop-types";
 import { useView } from "../../../../hooks/useView";
+import { useBookmark } from "../../../../hooks/useBookmark";
 
 export default function ContentHeader({
   title,
@@ -23,6 +25,7 @@ export default function ContentHeader({
   const { type, id } = useParams();
   const { user } = useContext(UserContext);
   const { viewed } = useView(id, type);
+  const { bookmarked } = useBookmark(id);
   const { t } = useTranslation();
 
   return (
@@ -43,10 +46,19 @@ export default function ContentHeader({
             <p>{genre.name}</p>
           </Link>
         ))}
-        {user.id && type !== "person" && viewed && (
-          <section className="ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-theme-light-bg-third stroke-theme-light-text-primary lg:h-9 lg:w-9 dark:bg-theme-dark-bg-third dark:stroke-theme-dark-text-primary">
-            <ViewSvg />
-          </section>
+        {user.id && type !== "person" && (bookmarked || viewed) && (
+          <div className="ml-auto flex gap-2">
+            {bookmarked && (
+              <section className="flex h-8 w-8 items-center justify-center rounded-full bg-theme-light-bg-third stroke-theme-light-text-primary lg:h-9 lg:w-9 dark:bg-theme-dark-bg-third dark:stroke-theme-dark-text-primary">
+                <BookmarkSvg />
+              </section>
+            )}
+            {viewed && (
+              <section className="flex h-8 w-8 items-center justify-center rounded-full bg-theme-light-bg-third stroke-theme-light-text-primary lg:h-9 lg:w-9 dark:bg-theme-dark-bg-third dark:stroke-theme-dark-text-primary">
+                <ViewSvg />
+              </section>
+            )}
+          </div>
         )}
       </div>
       {type === "movie" && (

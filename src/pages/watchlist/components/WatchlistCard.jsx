@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ArrowRightSvg from "../../../components/svg/action/ArrowRightSvg";
+import LockSvg from "../../../components/svg/action/LockSvg";
 import PropTypes from "prop-types";
 
 export default function WatchlistCard({ el }) {
   const { t } = useTranslation();
-  
+
   return (
     <Link
       to={`/watchlist/${el.id}`}
@@ -14,7 +15,7 @@ export default function WatchlistCard({ el }) {
       <li className="flex h-16 w-full items-center justify-between lg:h-24">
         <section className="flex h-full w-4/5 flex-col justify-center">
           <h1 className="line-clamp-1 font-abri text-base lg:text-lg">
-            {el.title}
+            {el.type === "SYSTEM" ? t("page.watchlist.system.title") : el.title}
           </h1>
           <h2 className="text-xs italic lg:text-sm dark:text-theme-dark-text-secondary">
             {el.medias_count}{" "}
@@ -23,7 +24,10 @@ export default function WatchlistCard({ el }) {
               : t("page.watchlist.count.singular")}
           </h2>
         </section>
-        <ArrowRightSvg />
+        <div className="flex items-center gap-2">
+          {el.type === "SYSTEM" && <LockSvg />}
+          <ArrowRightSvg />
+        </div>
       </li>
     </Link>
   );

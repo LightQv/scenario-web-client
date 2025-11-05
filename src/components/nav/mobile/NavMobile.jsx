@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import UserContext from "../../../contexts/UserContext";
 import ThemeContext from "../../../contexts/ThemeContext";
+import BookmarkContext from "../../../contexts/BookmarkContext";
 import { useTranslation } from "react-i18next";
 import { loggedData, navData } from "../../../services/data";
 import MobileDropdown from "./MobileDropdown";
@@ -29,6 +30,7 @@ export default function NavMobile({
   const { t } = useTranslation();
   const { darkTheme } = useContext(ThemeContext);
   const { user, logout, loading } = useContext(UserContext);
+  const { bookmarkCount } = useContext(BookmarkContext);
   const [topDropdown, setTopDropdown] = useState(false);
   const [discoverDropdown, setDiscoverDropdown] = useState(false);
 
@@ -111,7 +113,16 @@ export default function NavMobile({
                           }`}
                 onClick={() => setShowBurger(false)}
               >
-                {el.title === t("navigation.link4") && <WatchlistSvg />}
+                {el.title === t("navigation.link4") && (
+                  <div className="relative">
+                    <WatchlistSvg />
+                    {bookmarkCount > 0 && (
+                      <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                        {bookmarkCount}
+                      </span>
+                    )}
+                  </div>
+                )}
                 {el.title === t("navigation.link5") && <ProfileSvg />}
                 <p className="uppercase">{el.title}</p>
               </NavLink>

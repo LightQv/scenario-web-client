@@ -82,6 +82,7 @@ export default function WatchlistContent() {
                     setShowEdit={setShowEdit}
                     setShowModal={setShowRename}
                     setShowModalDelete={setShowDelete}
+                    type={media.type}
                   />
                 </Dropdown>
               </div>

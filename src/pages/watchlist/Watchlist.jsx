@@ -24,9 +24,9 @@ export default function Watchlist() {
         .then((res) => {
           setWatchlists(res.data);
           setWatchlistUpdated(false);
-          setLoading(false);
         })
-        .catch(() => notifyError(t("toast.error")));
+        .catch(() => notifyError(t("toast.error")))
+        .finally(() => setLoading(false));
     }
   }, [user.id, watchlistUpdated, t]);
 
@@ -61,7 +61,13 @@ export default function Watchlist() {
               </li>
               {watchlists.length > 0 &&
                 watchlists
-                  .sort((a, b) => a.title.localeCompare(b.title))
+                  .sort((a, b) => {
+                    // SYSTEM watchlists first
+                    if (a.type === "SYSTEM" && b.type !== "SYSTEM") return -1;
+                    if (a.type !== "SYSTEM" && b.type === "SYSTEM") return 1;
+                    // Then sort alphabetically by title
+                    return a.title.localeCompare(b.title);
+                  })
                   .map((el) => <WatchlistCard el={el} key={el.id} />)}
             </ul>
           )}

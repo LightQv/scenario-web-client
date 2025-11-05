@@ -9,6 +9,7 @@ import { MovieGenres } from "./contexts/GenresContext.jsx";
 import { AppTheme } from "./contexts/ThemeContext.jsx";
 import { AuthHandler } from "./contexts/UserContext.jsx";
 import { UserViews } from "./contexts/ViewContext.jsx";
+import { UserBookmarks } from "./contexts/BookmarkContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <AuthHandler>
           <MovieGenres>
             <UserViews>
-              <App />
+              <UserBookmarks>
+                <App />
+              </UserBookmarks>
             </UserViews>
           </MovieGenres>
         </AuthHandler>

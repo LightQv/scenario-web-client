@@ -1,103 +1,147 @@
-# 🎬 SCENARIO
+<div align="center">
 
-**What do I watch tonight?!**  
-Scenario is a modern web client powered by the [TMDB API](https://www.themoviedb.org/documentation/api) to help you discover, track, and organize movies & TV shows.
+<img src="https://raw.githubusercontent.com/LightQv/scenario-expo/main/assets/images/icon.png" alt="Scenario icon" width="96" height="96" />
 
-## 📊 Badges
+# SCENARIO WEB
 
-<p align="left">
-  <a href="https://github.com/LightQv/scenario-web-client/stargazers">
-    <img src="https://img.shields.io/github/stars/LightQv/scenario-web-client?style=for-the-badge&logo=github" alt="GitHub stars"/>
-  </a>
-  <a href="https://github.com/LightQv/scenario-web-client/issues">
-    <img src="https://img.shields.io/github/issues/LightQv/scenario-web-client?style=for-the-badge&logo=github" alt="GitHub issues"/>
-  </a>
-  <a href="https://github.com/LightQv/scenario-web-client/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/LightQv/scenario-web-client?style=for-the-badge" alt="License"/>
-  </a>
-  <a href="https://github.com/LightQv/scenario-web-client/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/LightQv/scenario-web-client/.github/workflows/prod-web-client-docker.yaml?style=for-the-badge&logo=github" alt="CI Status"/>
-  </a>
-</p>
+React web client for discovering, tracking, and organizing movies and TV shows.
 
-## ✨ Features
+[About](#about) · [Setup](#setup) · [Development](#development) · [Configuration](#configuration) · [Deployment](#deployment) · [Related Projects](#related-projects) · [License](#license)
 
-- 🔍 Search for movies, TV shows, actors, or directors
-- 🌟 Browse **Top Rated** and **Discover** pages for new ideas
-- 🎞️ Watch trailers directly on YouTube
-- 📺 Check streaming availability in your country (EN-UK, EN-US, FR supported for now)
-- 👤 Create an account and customize your profile (banner + username)
-- ✅ Mark movies/TV shows as _watched_
-- 📂 Build your own **watchlist**
-- 📊 Get personalized stats: total time spent, number of episodes watched, etc.
+</div>
 
-## 🛠️ Languages & Tools
+---
 
-![Vite](https://img.shields.io/badge/Vite-%236646FF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Nginx](https://img.shields.io/badge/Nginx-%2325C65B.svg?style=for-the-badge&logo=nginx&logoColor=white)
+## About
 
-## ⚙️ Installation
+Scenario Web is the browser client for the Scenario movie and TV tracking application.
 
-1. **Clone the repository**
+It integrates with TMDB for media discovery and with Scenario API for authenticated user data. The client supports search, discovery, top-rated browsing, details pages, watchlists, viewing history, profile customization, and viewing statistics.
 
-   ```bash
-   git clone https://github.com/LightQv/scenario-web-client.git
-   cd scenario-web-client
+Core components:
 
-   ```
+- React application built with Vite
+- Tailwind CSS styling
+- React Router route structure with protected routes
+- Context-based state for authentication, themes, genres, and views
+- Axios service instances for backend and TMDB API calls
+- Formik and Yup for form handling and validation
 
-2. **Install dependencies**
+---
 
-   ```bash
-   npm install
-   ```
+## Setup
 
-3. **Setup environment variables**
-   Copy `.env.sample` into `.env` and fill in your values.
-   You will need at least:
+Clone the repository:
 
-   - A **TMDB API key**
-   - A running [Scenario API backend](https://github.com/LightQv/scenario-api) with PostgreSQL
+```bash
+git clone https://github.com/LightQv/scenario-web-client.git
+cd scenario-web-client
+```
 
-## 🚀 Usage
+Install dependencies:
 
-Run in development mode:
+```bash
+npm install
+```
+
+Create the local environment file:
+
+```bash
+cp .env.sample .env
+```
+
+---
+
+## Development
+
+Run the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+The Vite server runs at:
 
-You can either:
+```text
+http://localhost:5173
+```
 
-- Use the default credentials provided in the API repo
-- Or create your own account
+Run linting:
 
-## 🐳 Deployment
+```bash
+npm run lint
+```
 
-The project includes everything for production:
-
-- `Dockerfile` and `Dockerfile.prod`
-- `docker-compose.prod.yaml`
-- `nginx.conf`
-
-Build for production:
+Build the production bundle:
 
 ```bash
 npm run build
 ```
 
-Then serve the static files with **nginx** or any other static file server.
+Preview the production build:
 
-## 🔗 About
+```bash
+npm run preview
+```
 
-- **API Repository**: [Scenario API](https://github.com/LightQv/scenario-api)
+Start the preview server on `0.0.0.0:5173`:
 
-## 📜 License
+```bash
+npm run start
+```
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+---
+
+## Configuration
+
+Configuration is loaded through Vite environment variables.
+
+Required variables:
+
+- `VITE_API_URL`: Scenario API base URL
+- `VITE_TMDB_API_KEY`: TMDB API key
+- `VITE_TMDB_API_TOKEN`: TMDB API bearer token
+
+The backend must be available and configured for cookie-based authentication.
+
+---
+
+## Deployment
+
+The repository includes Docker and nginx configuration for production deployments:
+
+- `Dockerfile`
+- `Dockerfile.prod`
+- `docker-compose.prod.yaml`
+- `nginx.conf`
+
+Build static assets before serving them with nginx or another static file server:
+
+```bash
+npm run build
+```
+
+---
+
+## Project Structure
+
+```text
+src/
+├── components/   # Reusable UI, navigation, auth, result, and toast components
+├── contexts/     # Global React context providers
+├── pages/        # Route-level page components
+└── services/     # API clients, i18n, validators, data helpers, utilities
+```
+
+---
+
+## Related Projects
+
+- [Scenario API](https://github.com/LightQv/scenario-fast-api)
+- [Scenario Expo](https://github.com/LightQv/scenario-expo)
+
+---
+
+## License
+
+Scenario Web is licensed under the MIT License. See [LICENSE](LICENSE).
